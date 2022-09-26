@@ -190,11 +190,12 @@ class Actor(models.Model):
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    gender = models.CharField(max_length=100, choices=GENDER_CHOICES)
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    gender = models.CharField(max_length=100, choices=GENDER_CHOICES, blank=True)
     dob = models.DateField(blank=True, null=True)
     email = models.EmailField(max_length=256)
+    password = models.CharField(max_length=100)
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE, blank=True, null=True)
     country = models.CharField(max_length=100, blank=True)    
     state = models.CharField(max_length=100, blank=True)  
