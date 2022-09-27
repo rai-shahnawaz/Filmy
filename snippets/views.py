@@ -7,13 +7,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken, OutstandingToken, BlacklistedToken
-
-
-# Create your views here.
-# class MyObtainTokenPairView(TokenObtainPairView):
-    
-#     permission_classes = (AllowAny,)
-#     serializer_class = MyTokenObtainPairSerializer
+from rest_framework.renderers import TemplateHTMLRenderer
     
 
 class RegisterView(generics.CreateAPIView):
@@ -61,31 +55,7 @@ class UpdateProfileView(generics.UpdateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = UpdateUserSerializer
     
-# Register API
-# class RegisterAPI(generics.GenericAPIView):
-#     serializer_class = RegisterSerializer
-
-#     def post(self, request, *args, **kwargs):
-#         if self.request.version == 'v1':
-#             # you can put here business logic that
-#             # is specific to version 1
-#             serializer = self.get_serializer(data=request.data)
-#             serializer.is_valid(raise_exception=True)
-#             user = serializer.save()
-#             return Response({"user": UserSerializer(user, 
-#                                                     context=self.get_serializer_context()).data,
-#                             "token": AuthToken.objects.create(user)[1]
-#                             })
-#         # You can put here the current version
-#         # business logic
-#         serializer = self.get_serializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         user = serializer.save()
-#         return Response({"user": UserSerializer(user, 
-#                                                 context=self.get_serializer_context()).data,
-#                         "token": AuthToken.objects.create(user)[1]
-#                         })
-
+    
 @user_is_entry_author
 class FilmList(generics.ListCreateAPIView):
     queryset = Film.objects.all()
@@ -111,3 +81,11 @@ class BadgeList(generics.ListCreateAPIView):
     queryset = SubGenre.objects.all()
     serializer_class = BadgeSerializer
     
+
+class MovieList(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
+    template_name = 'index.html'
+    
+    def get(self, request):
+        queryset = Film.objects.all()
+        return Response({'films': queryset})

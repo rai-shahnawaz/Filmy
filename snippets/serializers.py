@@ -119,7 +119,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         instance.username = validated_data['username']
         instance.save()
         
-        user_profile = UserProfile.objects.filter(user=instance)
+        user_profile = UserProfile.objects.get(user=instance)
         user_profile.first_name = validated_data['first_name']
         user_profile.last_name = validated_data['last_name']
         user_profile.email = validated_data['email']
