@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 GENDER_CHOICES = [
        ('M', 'Male'),
@@ -195,7 +196,6 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=100, choices=GENDER_CHOICES, blank=True)
     dob = models.DateField(blank=True, null=True)
     email = models.EmailField(max_length=256)
-    password = models.CharField(max_length=100)
     badge = models.ForeignKey(Badge, on_delete=models.CASCADE, blank=True, null=True)
     country = models.CharField(max_length=100, blank=True)    
     state = models.CharField(max_length=100, blank=True)  

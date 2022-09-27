@@ -1,24 +1,66 @@
 from .models import *
+from django.contrib.auth.models import User
 from .serializers import *
 from .decorators import *
-from rest_framework import generics, permissions
+from rest_framework import generics, status
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
-# from knox.models import AuthToken
-from .serializers import UserSerializer
-from django.contrib.auth import login
-from rest_framework.authtoken.serializers import AuthTokenSerializer
-# from knox.views import LoginView as KnoxLoginView
+from rest_framework.views import APIView
+from rest_framework_simplejwt.tokens import RefreshToken, OutstandingToken, BlacklistedToken
+
 
 # Create your views here.
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework.permissions import AllowAny
-from .serializers import MyTokenObtainPairSerializer
+# class MyObtainTokenPairView(TokenObtainPairView):
+    
+#     permission_classes = (AllowAny,)
+#     serializer_class = MyTokenObtainPairSerializer
+    
 
-
-class MyObtainTokenPairView(TokenObtainPairView):
+class RegisterView(generics.CreateAPIView):
+    
+    queryset = User.objects.all()
     permission_classes = (AllowAny,)
-    serializer_class = MyTokenObtainPairSerializer
+    serializer_class = RegisterSerializer
+    
+    
+class LogoutView(APIView):
+    permission_classes = (IsAuthenticated,)
 
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+        
+class LogoutAllView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        tokens = OutstandingToken.objects.filter(user_id=request.user.id)
+        for token in tokens:
+            t, _ = BlacklistedToken.objects.get_or_create(token=token)
+
+        return Response(status=status.HTTP_205_RESET_CONTENT)
+
+
+class ChangePasswordView(generics.UpdateAPIView):
+    
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ChangePasswordSerializer
+    
+    
+class UpdateProfileView(generics.UpdateAPIView):
+    
+    queryset = User.objects.all()
+    permission_classes = (IsAuthenticated,)
+    serializer_class = UpdateUserSerializer
+    
 # Register API
 # class RegisterAPI(generics.GenericAPIView):
 #     serializer_class = RegisterSerializer
@@ -43,19 +85,7 @@ class MyObtainTokenPairView(TokenObtainPairView):
 #                                                 context=self.get_serializer_context()).data,
 #                         "token": AuthToken.objects.create(user)[1]
 #                         })
-        
-        
-# class LoginAPI(KnoxLoginView):
-#     permission_classes = (permissions.AllowAny,)
 
-#     def post(self, request, format=None):
-#         serializer = AuthTokenSerializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         user = serializer.validated_data['user']
-#         login(request, user)
-#         return super(LoginAPI, self).post(request, format=None)
-    
-        
 @user_is_entry_author
 class FilmList(generics.ListCreateAPIView):
     queryset = Film.objects.all()

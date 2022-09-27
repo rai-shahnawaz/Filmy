@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework', # new
-    'snippets', # new
-    # 'knox', # new
+    'rest_framework',
+    'snippets',
+    # 'knox',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 MIDDLEWARE = [
