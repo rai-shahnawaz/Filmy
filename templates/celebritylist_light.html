@@ -134,7 +134,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index_light.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
+				    <a href="{% url 'index_light' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -147,9 +147,9 @@
 							Home <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="index_light.html">Home 01</a></li>
-								<li><a href="homev2_light.html">Home 02</a></li>
-								<li><a href="homev3_light.html">Home 03</a></li>
+								<li><a href="{% url 'index_light' %}">Home 01</a></li>
+								<li><a href="{% url 'homev2_light' %}">Home 02</a></li>
+								<li><a href="{% url 'homev3_light' %}">Home 03</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -160,13 +160,13 @@
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Movie grid<i class="ion-ios-arrow-forward"></i></a>
 									<ul class="dropdown-menu level2">
-										<li><a href="moviegrid_light.html">Movie grid</a></li>
-										<li><a href="moviegridfw_light.html">movie grid full width</a></li>
+										<li><a href="{% url 'moviegrid_light' %}">Movie grid</a></li>
+										<li><a href="{% url 'moviegridfw_light' %}">movie grid full width</a></li>
 									</ul>
 								</li>			
-								<li><a href="movielist_light.html">Movie list</a></li>
-								<li><a href="moviesingle_light.html">Movie single</a></li>
-								<li class="it-last"><a href="seriessingle_light.html">Series single</a></li>
+								<li><a href="{% url 'movielist_light' %}">Movie list</a></li>
+								<li><a href="{% url 'moviesingle_light' %}">Movie single</a></li>
+								<li class="it-last"><a href="{% url 'seriessingle_light' %}">Series single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -174,10 +174,10 @@
 							celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01_light.html">celebrity grid 01</a></li>
-								<li><a href="celebritygrid02_light.html">celebrity grid 02 </a></li>
-								<li><a href="celebritylist_light.html">celebrity list</a></li>
-								<li class="it-last"><a href="celebritysingle_light.html">celebrity single</a></li>
+								<li><a href="{% url 'celebritygrid01_light' %}">celebrity grid 01</a></li>
+								<li><a href="{% url 'celebritygrid02_light' %}">celebrity grid 02 </a></li>
+								<li><a href="{% url 'celebritylist_light' %}">celebrity list</a></li>
+								<li class="it-last"><a href="{% url 'celebritysingle_light' %}">celebrity single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -185,9 +185,9 @@
 							news <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="bloglist_light.html">blog List</a></li>
-								<li><a href="bloggrid_light.html">blog Grid</a></li>
-								<li class="it-last"><a href="blogdetail_light.html">blog Detail</a></li>
+								<li><a href="{% url 'bloglist_light' %}">blog List</a></li>
+								<li><a href="{% url 'bloggrid_light' %}">blog Grid</a></li>
+								<li class="it-last"><a href="{% url 'blogdetail_light' %}">blog Detail</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -195,10 +195,10 @@
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="userfavoritegrid_light.html">user favorite grid</a></li>
-								<li><a href="userfavoritelist_light.html">user favorite list</a></li>
-								<li><a href="userprofile_light.html">user profile</a></li>
-								<li class="it-last"><a href="userrate_light.html">user rate</a></li>
+								<li><a href="{% url 'userfavoritegrid_light' %}">user favorite grid</a></li>
+								<li><a href="{% url 'userfavoritelist_light' %}">user favorite list</a></li>
+								<li><a href="{% url 'userprofile_light' %}">user profile</a></li>
+								<li class="it-last"><a href="{% url 'userrate_light' %}">user rate</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -208,9 +208,9 @@
 							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="landing.html">Landing</a></li>
-								<li><a href="404.html">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
+								<li><a href="{% url 'landing' %}">Landing</a></li>
+								<li><a href="{% url '404' %}">404 Page</a></li>
+								<li class="it-last"><a href="{% url 'comingsoon' %}">Coming soon</a></li>
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
@@ -265,15 +265,15 @@
 						<option value="date">Release date Descending</option>
 						<option value="date">Release date Ascending</option>
 					</select>
-					<a href="celebritylist_light.html" class="list"><i class="ion-ios-list-outline active"></i></a>
-					<a  href="celebritygrid01_light.html" class="grid"><i class="ion-grid "></i></a>
+					<a href="{% url 'celebritylist_light' %}" class="list"><i class="ion-ios-list-outline active"></i></a>
+					<a  href="{% url 'celebritygrid01_light' %}" class="grid"><i class="ion-grid "></i></a>
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="ceb-item-style-2">
 							<img src="{% static 'images/uploads/ceblist1.jpg' %}" alt="">
 							<div class="ceb-infor">
-								<h2><a href="celebritysingle_light.html">Dan Stevens</a></h2>
+								<h2><a href="{% url 'celebritysingle_light' %}">Dan Stevens</a></h2>
 								<span>actor, usa</span>
 								<p>Dan Stevens was born at Croydon in Surrey on 10th October 1982. His parents are teachers. He was educated at Tonbridge School and trained in acting at the National Youth Theatre of Great Britain... </p>
 							</div>
@@ -283,7 +283,7 @@
 						<div class="ceb-item-style-2">
 							<img src="{% static 'images/uploads/ceblist2.jpg' %}" alt="">
 							<div class="ceb-infor">
-								<h2><a href="celebritysingle_light.html">Luke Evans</a></h2>
+								<h2><a href="{% url 'celebritysingle_light' %}">Luke Evans</a></h2>
 								<span>actor, mexico</span>
 								<p>Luke George Evans was born in Pontypool, Wales, and grew up in Aberbargoed, in the south of Wales. He is the son of Yvonne (Lewis) and David Evans. He moved to Cardiff at the age 17...</p>
 							</div>
@@ -293,7 +293,7 @@
 						<div class="ceb-item-style-2">
 							<img src="{% static 'images/uploads/ceblist3.jpg' %}" alt="">
 							<div class="ceb-infor">
-								<h2><a href="celebritysingle_light.html">Scarlett Johansson</a></h2>
+								<h2><a href="{% url 'celebritysingle_light' %}">Scarlett Johansson</a></h2>
 								<span>actress, france</span>
 								<p>Scarlett Ingrid Johansson was born in New York City. Her mother, Melanie Sloan, is from a Jewish family from the Bronx, and her father, Karsten Johansson, is a Danish-born architect, from Copenhagen...</p>
 							</div>
@@ -303,7 +303,7 @@
 						<div class="ceb-item-style-2">
 							<img src="{% static 'images/uploads/ceblist4.jpg' %}" alt="">
 							<div class="ceb-infor">
-								<h2><a href="celebritysingle_light.html">Emma Watson</a></h2>
+								<h2><a href="{% url 'celebritysingle_light' %}">Emma Watson</a></h2>
 								<span>actress, uk</span>
 								<p>Emma Charlotte Duerre Watson was born in Paris, France, to English parents, Jacqueline Luesby and Chris Watson, both lawyers. She moved to Oxfordshire when she was five...</p>
 							</div>
@@ -313,7 +313,7 @@
 						<div class="ceb-item-style-2">
 							<img src="{% static 'images/uploads/ceblist5.jpg' %}" alt="">
 							<div class="ceb-infor">
-								<h2><a href="celebritysingle_light.html">Tom Hardy</a></h2>
+								<h2><a href="{% url 'celebritysingle_light' %}">Tom Hardy</a></h2>
 								<span>actor, italy	</span>
 								<p>Joan Crawford was born Lucille Fay LeSueur on March 23, 1905, in San Antonio, Texas, to Anna Belle (Johnson) and Thomas E. LeSueur, a laundry laborer. By the time she was born her parents had separated....</p>
 							</div>
@@ -323,7 +323,7 @@
 						<div class="ceb-item-style-2">
 							<img src="{% static 'images/uploads/ceblist6.jpg' %}" alt="">
 							<div class="ceb-infor">
-								<h2><a href="celebritysingle_light.html">Joan Crawford</a></h2>
+								<h2><a href="{% url 'celebritysingle_light' %}">Joan Crawford</a></h2>
 								<span>director, sweden</span>
 								<p>Joan Crawford was born Lucille Fay LeSueur on March 23, 1905, in San Antonio, Texas, to Anna Belle (Johnson) and Thomas E. LeSueur, a laundry laborer. By the time she was born her parents had separated....</p>
 							</div>
@@ -333,7 +333,7 @@
 						<div class="ceb-item-style-2">
 							<img src="{% static 'images/uploads/ceblist7.jpg' %}" alt="">
 							<div class="ceb-infor">
-								<h2><a href="celebritysingle_light.html">Margot Robbie</a></h2>
+								<h2><a href="{% url 'celebritysingle_light' %}">Margot Robbie</a></h2>
 								<span>actress, chile</span>
 								<p>Margot Robbie is an Australian actress born in Dalby, Queensland, and raised on the Gold Coast, spending much of her time at the farm belonging to her grandparents. Her mother, Sarie Kessler, is a physiotherapist....</p>
 							</div>
@@ -343,7 +343,7 @@
 						<div class="ceb-item-style-2">
 							<img src="{% static 'images/uploads/ceblist8.jpg' %}" alt="">
 							<div class="ceb-infor">
-								<h2><a href="celebritysingle_light.html">Jason Momoa</a></h2>
+								<h2><a href="{% url 'celebritysingle_light' %}">Jason Momoa</a></h2>
 								<span>actor, usa</span>
 								<p>Joseph Jason Namakaeha Momoa was born on August 1, 1979 in Honolulu, Hawaii. He is the son of Coni (Lemke), a photographer, and Joseph Momoa, a painter...</p>
 							</div>
@@ -463,7 +463,7 @@
 	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
+				 <a href="{% url 'index-2' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
 				 <p>5th Avenue st, manhattan<br>
 				New York, NY 10001</p>
 				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>

@@ -135,7 +135,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
+				    <a href="{% url 'index-2' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -148,9 +148,9 @@
 							Home <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="index-2.html">Home 01</a></li>
-								<li><a href="homev2.html">Home 02</a></li>
-								<li><a href="homev3.html">Home 03</a></li>
+								<li><a href="{% url 'index-2' %}">Home 01</a></li>
+								<li><a href="{% url 'homev2' %}">Home 02</a></li>
+								<li><a href="{% url 'homev3' %}">Home 03</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -161,13 +161,13 @@
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Movie grid<i class="ion-ios-arrow-forward"></i></a>
 									<ul class="dropdown-menu level2">
-										<li><a href="moviegrid.html">Movie grid</a></li>
-										<li><a href="moviegridfw.html">movie grid full width</a></li>
+										<li><a href="{% url 'moviegrid' %}">Movie grid</a></li>
+										<li><a href="{% url 'moviegridfw' %}">movie grid full width</a></li>
 									</ul>
 								</li>			
-								<li><a href="movielist.html">Movie list</a></li>
-								<li><a href="moviesingle.html">Movie single</a></li>
-								<li class="it-last"><a href="seriessingle.html">Series single</a></li>
+								<li><a href="{% url 'movielist' %}">Movie list</a></li>
+								<li><a href="{% url 'moviesingle' %}">Movie single</a></li>
+								<li class="it-last"><a href="{% url 'seriessingle' %}">Series single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -175,10 +175,10 @@
 							celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01.html">celebrity grid 01</a></li>
-								<li><a href="celebritygrid02.html">celebrity grid 02 </a></li>
-								<li><a href="celebritylist.html">celebrity list</a></li>
-								<li class="it-last"><a href="celebritysingle.html">celebrity single</a></li>
+								<li><a href="{% url 'celebritygrid01' %}">celebrity grid 01</a></li>
+								<li><a href="{% url 'celebritygrid02' %}">celebrity grid 02 </a></li>
+								<li><a href="{% url 'celebritylist' %}">celebrity list</a></li>
+								<li class="it-last"><a href="{% url 'celebritysingle' %}">celebrity single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -186,9 +186,9 @@
 							news <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="bloglist.html">blog List</a></li>
-								<li><a href="bloggrid.html">blog Grid</a></li>
-								<li class="it-last"><a href="blogdetail.html">blog Detail</a></li>
+								<li><a href="{% url 'bloglist' %}">blog List</a></li>
+								<li><a href="{% url 'bloggrid' %}">blog Grid</a></li>
+								<li class="it-last"><a href="{% url 'blogdetail' %}">blog Detail</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -196,10 +196,10 @@
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="userfavoritegrid.html">user favorite grid</a></li>
-								<li><a href="userfavoritelist.html">user favorite list</a></li>
-								<li><a href="userprofile.html">user profile</a></li>
-								<li class="it-last"><a href="userrate.html">user rate</a></li>
+								<li><a href="{% url 'userfavoritegrid' %}">user favorite grid</a></li>
+								<li><a href="{% url 'userfavoritelist' %}">user favorite list</a></li>
+								<li><a href="{% url 'userprofile' %}">user profile</a></li>
+								<li class="it-last"><a href="{% url 'userrate' %}">user rate</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -209,9 +209,9 @@
 							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="landing.html">Landing</a></li>
-								<li><a href="404.html">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
+								<li><a href="{% url 'landing' %}">Landing</a></li>
+								<li><a href="{% url '404' %}">404 Page</a></li>
+								<li class="it-last"><a href="{% url 'comingsoon' %}">Coming soon</a></li>
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
@@ -265,71 +265,71 @@
 						<option value="date">Release date Descending</option>
 						<option value="date">Release date Ascending</option>
 					</select>
-					<a href="celebritylist.html" class="list"><i class="ion-ios-list-outline "></i></a>
-					<a  href="celebritygrid01.html" class="grid"><i class="ion-grid active"></i></a>
+					<a href="{% url 'celebritylist' %}" class="list"><i class="ion-ios-list-outline "></i></a>
+					<a  href="{% url 'celebritygrid01' %}" class="grid"><i class="ion-grid active"></i></a>
 				</div>
 				<div class="celebrity-items">
 					<div class="ceb-item">
-						<a href="celebritysingle.html"><img src="{% static 'images/uploads/ceb1.jpg' %}" alt=""></a>
+						<a href="{% url 'celebritysingle' %}"><img src="{% static 'images/uploads/ceb1.jpg' %}" alt=""></a>
 						<div class="ceb-infor">
-							<h2><a href="celebritylist.html">Tom Hardy</a></h2>
+							<h2><a href="{% url 'celebritylist' %}">Tom Hardy</a></h2>
 							<span>actor, usa</span>
 						</div>
 					</div>
 					<div class="ceb-item">
-						<a href="celebritylist.html"><img src="{% static 'images/uploads/ceb2.jpg' %}" alt=""></a>						
+						<a href="{% url 'celebritylist' %}"><img src="{% static 'images/uploads/ceb2.jpg' %}" alt=""></a>						
 						<div class="ceb-infor">
-							<h2><a href="celebritylist.html">Leonardo DiCaprio</a></h2>
+							<h2><a href="{% url 'celebritylist' %}">Leonardo DiCaprio</a></h2>
 							<span>actor, mexico</span>
 						</div>
 					</div>
 					<div class="ceb-item">
-						<a href="celebritysingle.html"><img src="{% static 'images/uploads/ceb3.jpg' %}" alt=""></a>
+						<a href="{% url 'celebritysingle' %}"><img src="{% static 'images/uploads/ceb3.jpg' %}" alt=""></a>
 						<div class="ceb-infor">
-							<h2><a href="celebritylist.html">Emma Stone</a></h2>
+							<h2><a href="{% url 'celebritylist' %}">Emma Stone</a></h2>
 							<span>Actress, usa</span>
 						</div>
 					</div>
 					<div class="ceb-item">
-						<a href="celebritysingle.html"> <img src="{% static 'images/uploads/ceb4.jpg' %}" alt=""></a>
+						<a href="{% url 'celebritysingle' %}"> <img src="{% static 'images/uploads/ceb4.jpg' %}" alt=""></a>
 						
 						<div class="ceb-infor">
-							<h2><a href="celebritylist.html">Olga Kurylenko</a></h2>
+							<h2><a href="{% url 'celebritylist' %}">Olga Kurylenko</a></h2>
 							<span>Actress, sweden</span>
 						</div>
 					</div>
 					<div class="ceb-item">
-						<a href="celebritysingle.html"><img src="{% static 'images/uploads/ceb5.jpg' %}" alt=""></a>
+						<a href="{% url 'celebritysingle' %}"><img src="{% static 'images/uploads/ceb5.jpg' %}" alt=""></a>
 						<div class="ceb-infor">
-							<h2><a href="celebritylist.html">Micheal Bay</a></h2>
+							<h2><a href="{% url 'celebritylist' %}">Micheal Bay</a></h2>
 							<span>Director, france</span>
 						</div>
 					</div>
 					<div class="ceb-item">
-						<a href="celebritysingle.html"><img src="{% static 'images/uploads/ceb6.jpg' %}" alt=""></a>
+						<a href="{% url 'celebritysingle' %}"><img src="{% static 'images/uploads/ceb6.jpg' %}" alt=""></a>
 						<div class="ceb-infor">
-							<h2><a href="celebritylist.html">Martin Scorsese</a></h2>
+							<h2><a href="{% url 'celebritylist' %}">Martin Scorsese</a></h2>
 							<span>Director, italy</span>
 						</div>
 					</div>
 					<div class="ceb-item">
-						<a href="celebritysingle.html"><img src="{% static 'images/uploads/ceb7.jpg' %}" alt=""></a>
+						<a href="{% url 'celebritysingle' %}"><img src="{% static 'images/uploads/ceb7.jpg' %}" alt=""></a>
 						<div class="ceb-infor">
-							<h2><a href="celebritylist.html">TJohnson Staham</a></h2>
+							<h2><a href="{% url 'celebritylist' %}">TJohnson Staham</a></h2>
 							<span>actor, uk</span>
 						</div>
 					</div>
 					<div class="ceb-item">
-						<a href="celebritysingle.html"><img src="{% static 'images/uploads/ceb8.jpg' %}" alt=""></a>
+						<a href="{% url 'celebritysingle' %}"><img src="{% static 'images/uploads/ceb8.jpg' %}" alt=""></a>
 						<div class="ceb-infor">
-							<h2><a href="celebritylist.html">Haley Bennett</a></h2>
+							<h2><a href="{% url 'celebritylist' %}">Haley Bennett</a></h2>
 							<span>actress, france</span>
 						</div>
 					</div>
 					<div class="ceb-item">
-						<a href="celebritysingle.html"><img src="{% static 'images/uploads/ceb9.jpg' %}" alt=""></a>
+						<a href="{% url 'celebritysingle' %}"><img src="{% static 'images/uploads/ceb9.jpg' %}" alt=""></a>
 						<div class="ceb-infor">
-							<h2><a href="celebritylist.html">Teresa Palmer</a></h2>
+							<h2><a href="{% url 'celebritylist' %}">Teresa Palmer</a></h2>
 							<span>actress, uk</span>
 						</div>
 					</div>
@@ -445,7 +445,7 @@
 	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
+				 <a href="{% url 'index-2' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
 				 <p>5th Avenue st, manhattan<br>
 				New York, NY 10001</p>
 				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>

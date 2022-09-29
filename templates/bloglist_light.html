@@ -135,7 +135,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index_light.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
+				    <a href="{% url 'index_light' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -148,9 +148,9 @@
 							Home <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="index_light.html">Home 01</a></li>
-								<li><a href="homev2_light.html">Home 02</a></li>
-								<li><a href="homev3_light.html">Home 03</a></li>
+								<li><a href="{% url 'index_light' %}">Home 01</a></li>
+								<li><a href="{% url 'homev2_light' %}">Home 02</a></li>
+								<li><a href="{% url 'homev3_light' %}">Home 03</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -161,13 +161,13 @@
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Movie grid<i class="ion-ios-arrow-forward"></i></a>
 									<ul class="dropdown-menu level2">
-										<li><a href="moviegrid_light.html">Movie grid</a></li>
-										<li><a href="moviegridfw_light.html">movie grid full width</a></li>
+										<li><a href="{% url 'moviegrid_light' %}">Movie grid</a></li>
+										<li><a href="{% url 'moviegridfw_light' %}">movie grid full width</a></li>
 									</ul>
 								</li>			
-								<li><a href="movielist_light.html">Movie list</a></li>
-								<li><a href="moviesingle_light.html">Movie single</a></li>
-								<li class="it-last"><a href="seriessingle_light.html">Series single</a></li>
+								<li><a href="{% url 'movielist_light' %}">Movie list</a></li>
+								<li><a href="{% url 'moviesingle_light' %}">Movie single</a></li>
+								<li class="it-last"><a href="{% url 'seriessingle_light' %}">Series single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -175,10 +175,10 @@
 							celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01_light.html">celebrity grid 01</a></li>
-								<li><a href="celebritygrid02_light.html">celebrity grid 02 </a></li>
-								<li><a href="celebritylist_light.html">celebrity list</a></li>
-								<li class="it-last"><a href="celebritysingle_light.html">celebrity single</a></li>
+								<li><a href="{% url 'celebritygrid01_light' %}">celebrity grid 01</a></li>
+								<li><a href="{% url 'celebritygrid02_light' %}">celebrity grid 02 </a></li>
+								<li><a href="{% url 'celebritylist_light' %}">celebrity list</a></li>
+								<li class="it-last"><a href="{% url 'celebritysingle_light' %}">celebrity single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -186,9 +186,9 @@
 							news <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="bloglist_light.html">blog List</a></li>
-								<li><a href="bloggrid_light.html">blog Grid</a></li>
-								<li class="it-last"><a href="blogdetail_light.html">blog Detail</a></li>
+								<li><a href="{% url 'bloglist_light' %}">blog List</a></li>
+								<li><a href="{% url 'bloggrid_light' %}">blog Grid</a></li>
+								<li class="it-last"><a href="{% url 'blogdetail_light' %}">blog Detail</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -196,10 +196,10 @@
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="userfavoritegrid_light.html">user favorite grid</a></li>
-								<li><a href="userfavoritelist_light.html">user favorite list</a></li>
-								<li><a href="userprofile_light.html">user profile</a></li>
-								<li class="it-last"><a href="userrate_light.html">user rate</a></li>
+								<li><a href="{% url 'userfavoritegrid_light' %}">user favorite grid</a></li>
+								<li><a href="{% url 'userfavoritelist_light' %}">user favorite list</a></li>
+								<li><a href="{% url 'userprofile_light' %}">user profile</a></li>
+								<li class="it-last"><a href="{% url 'userrate_light' %}">user rate</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -209,9 +209,9 @@
 							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="landing.html">Landing</a></li>
-								<li><a href="404.html">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
+								<li><a href="{% url 'landing' %}">Landing</a></li>
+								<li><a href="{% url '404' %}">404 Page</a></li>
+								<li class="it-last"><a href="{% url 'comingsoon' %}">Coming soon</a></li>
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
@@ -258,7 +258,7 @@
 				<div class="blog-item-style-1 blog-item-style-3">
             		<img src="{% static 'images/uploads/bloglist-it1.jpg' %}" alt="">
             		<div class="blog-it-infor">
-            			<h3><a href="blogdetail_light.html">Godzilla: King Of The Monsters Adds O’Shea Jackson Jr</a></h3>
+            			<h3><a href="{% url 'blogdetail_light' %}">Godzilla: King Of The Monsters Adds O’Shea Jackson Jr</a></h3>
             			<span class="time">27 Mar 2017</span>
             			<p>Africa's burgeoning animation scene got a boost this week with the announcement of an ambitious new partnership that will pair rising talents from across the continent ...</p>
             		</div>
@@ -266,7 +266,7 @@
             	<div class="blog-item-style-1 blog-item-style-3">
             		<img src="{% static 'images/uploads/bloglist-it2.jpg' %}" alt="">
             		<div class="blog-it-infor">
-            			<h3><a href="blogdetail_light.html">Magnolia Nabs ‘Lucky’ Starring Harry Dean Stanton</a></h3>
+            			<h3><a href="{% url 'blogdetail_light' %}">Magnolia Nabs ‘Lucky’ Starring Harry Dean Stanton</a></h3>
             			<span class="time">27 Mar 2017</span>
             			<p>Magnolia Pictures has acquired U.S. and international rights to the comedic drama Lucky John Carroll Lynch’s directorial debut. Lynch is an in-demand character actor who ...</p>
             		</div>
@@ -274,7 +274,7 @@
 				<div class="blog-item-style-1 blog-item-style-3">
             		<img src="{% static 'images/uploads/bloglist-it3.jpg' %}" alt="">
             		<div class="blog-it-infor">
-            			<h3><a href="blogdetail_light.html">‘Going in Style’ Tops ‘Smurfs: The Lost Village’ at Thursday Box Office</a></h3>
+            			<h3><a href="{% url 'blogdetail_light' %}">‘Going in Style’ Tops ‘Smurfs: The Lost Village’ at Thursday Box Office</a></h3>
             			<span class="time">27 Mar 2017</span>
             			<p>New Line’s remake of “Going in Style” launched with a moderate $600,000 on Thursday night, while Sony’s animated “Smurfs: The Lost Village” debuted with $375,000 ...</p>
             		</div>
@@ -282,7 +282,7 @@
             	<div class="blog-item-style-1 blog-item-style-3">
             		<img src="{% static 'images/uploads/bloglist-it4.jpg' %}" alt="">
             		<div class="blog-it-infor">
-            			<h3><a href="blogdetail_light.html">India’s National Film Awards: ‘Kaasav’ Wins Best Picture</a></h3>
+            			<h3><a href="{% url 'blogdetail_light' %}">India’s National Film Awards: ‘Kaasav’ Wins Best Picture</a></h3>
             			<span class="time">27 Mar 2017</span>
             			<p>Although it sporadically errs on the side of sentimentality and simplification, "The Case for Christ" sustains interest, and even generates mild suspense ...</p>
             		</div>
@@ -290,7 +290,7 @@
             	<div class="blog-item-style-1 blog-item-style-3">
             		<img src="{% static 'images/uploads/bloglist-it5.jpg' %}" alt="">
             		<div class="blog-it-infor">
-            			<h3><a href="blogdetail_light.html">‘Kong: Skull Island’ Tops $500 Million at Worldwide Box Office</a></h3>
+            			<h3><a href="{% url 'blogdetail_light' %}">‘Kong: Skull Island’ Tops $500 Million at Worldwide Box Office</a></h3>
             			<span class="time">27 Mar 2017</span>
             			<p>King Kong is still a box office giant. “Kong: Skull Island” has crossed the $500 million mark at the worldwide box office. It’s the third 2017 title to hit the milestone after Disney’s ...</p>
             		</div>
@@ -298,7 +298,7 @@
             	<div class="blog-item-style-1 blog-item-style-3">
             		<img src="{% static 'images/uploads/bloglist-it6.jpg' %}" alt="">
             		<div class="blog-it-infor">
-            			<h3><a href="blogdetail_light.html">Film Review: ‘Aftermath’</a></h3>
+            			<h3><a href="{% url 'blogdetail_light' %}">Film Review: ‘Aftermath’</a></h3>
             			<span class="time">27 Mar 2017</span>
             			<p>"Aftermath" is a plane crash movie without a plane crash. Instead, the closest we get is a scene set in the control tower, where a computer screen shows two ...</p>
             		</div>
@@ -370,7 +370,7 @@
 	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
+				 <a href="{% url 'index-2' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
 				 <p>5th Avenue st, manhattan<br>
 				New York, NY 10001</p>
 				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>

@@ -135,7 +135,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
+				    <a href="{% url 'index-2' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -148,9 +148,9 @@
 							Home <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="index-2.html">Home 01</a></li>
-								<li><a href="homev2.html">Home 02</a></li>
-								<li><a href="homev3.html">Home 03</a></li>
+								<li><a href="{% url 'index-2' %}">Home 01</a></li>
+								<li><a href="{% url 'homev2' %}">Home 02</a></li>
+								<li><a href="{% url 'homev3' %}">Home 03</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -161,13 +161,13 @@
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle" data-toggle="dropdown" >Movie grid<i class="ion-ios-arrow-forward"></i></a>
 									<ul class="dropdown-menu level2">
-										<li><a href="moviegrid.html">Movie grid</a></li>
-										<li><a href="moviegridfw.html">movie grid full width</a></li>
+										<li><a href="{% url 'moviegrid' %}">Movie grid</a></li>
+										<li><a href="{% url 'moviegridfw' %}">movie grid full width</a></li>
 									</ul>
 								</li>			
-								<li><a href="movielist.html">Movie list</a></li>
-								<li><a href="moviesingle.html">Movie single</a></li>
-								<li class="it-last"><a href="seriessingle.html">Series single</a></li>
+								<li><a href="{% url 'movielist' %}">Movie list</a></li>
+								<li><a href="{% url 'moviesingle' %}">Movie single</a></li>
+								<li class="it-last"><a href="{% url 'seriessingle' %}">Series single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -175,10 +175,10 @@
 							celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01.html">celebrity grid 01</a></li>
-								<li><a href="celebritygrid02.html">celebrity grid 02 </a></li>
-								<li><a href="celebritylist.html">celebrity list</a></li>
-								<li class="it-last"><a href="celebritysingle.html">celebrity single</a></li>
+								<li><a href="{% url 'celebritygrid01' %}">celebrity grid 01</a></li>
+								<li><a href="{% url 'celebritygrid02' %}">celebrity grid 02 </a></li>
+								<li><a href="{% url 'celebritylist' %}">celebrity list</a></li>
+								<li class="it-last"><a href="{% url 'celebritysingle' %}">celebrity single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -186,9 +186,9 @@
 							news <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="bloglist.html">blog List</a></li>
-								<li><a href="bloggrid.html">blog Grid</a></li>
-								<li class="it-last"><a href="blogdetail.html">blog Detail</a></li>
+								<li><a href="{% url 'bloglist' %}">blog List</a></li>
+								<li><a href="{% url 'bloggrid' %}">blog Grid</a></li>
+								<li class="it-last"><a href="{% url 'blogdetail' %}">blog Detail</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -196,10 +196,10 @@
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="userfavoritegrid.html">user favorite grid</a></li>
-								<li><a href="userfavoritelist.html">user favorite list</a></li>
-								<li><a href="userprofile.html">user profile</a></li>
-								<li class="it-last"><a href="userrate.html">user rate</a></li>
+								<li><a href="{% url 'userfavoritegrid' %}">user favorite grid</a></li>
+								<li><a href="{% url 'userfavoritelist' %}">user favorite list</a></li>
+								<li><a href="{% url 'userprofile' %}">user profile</a></li>
+								<li class="it-last"><a href="{% url 'userrate' %}">user rate</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -209,9 +209,9 @@
 							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="landing.html">Landing</a></li>
-								<li><a href="404.html">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
+								<li><a href="{% url 'landing' %}">Landing</a></li>
+								<li><a href="{% url '404' %}">404 Page</a></li>
+								<li class="it-last"><a href="{% url 'comingsoon' %}">Coming soon</a></li>
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
@@ -264,13 +264,13 @@
 						<option value="date">Release date Descending</option>
 						<option value="date">Release date Ascending</option>
 					</select>
-					<a href="movielist.html" class="list"><i class="ion-ios-list-outline active"></i></a>
-					<a  href="moviegrid.html" class="grid"><i class="ion-grid"></i></a>
+					<a href="{% url 'movielist' %}" class="list"><i class="ion-ios-list-outline active"></i></a>
+					<a  href="{% url 'moviegrid' %}" class="grid"><i class="ion-grid"></i></a>
 				</div>
 				<div class="movie-item-style-2">
 					<img src="{% static 'images/uploads/mv1.jpg' %}" alt="">
 					<div class="mv-item-infor">
-						<h6><a href="moviesingle.html">oblivion <span>(2012)</span></a></h6>
+						<h6><a href="{% url 'moviesingle' %}">oblivion <span>(2012)</span></a></h6>
 						<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
 						<p class="describe">Earth's mightiest heroes must come together and learn to fight as a team if they are to stop the mischievous Loki and his alien army from enslaving humanity...</p>
 						<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
@@ -281,7 +281,7 @@
 				<div class="movie-item-style-2">
 					<img src="{% static 'images/uploads/mv2.jpg' %}" alt="">
 					<div class="mv-item-infor">
-						<h6><a href="moviesingle.html">into the wild <span>(2014)</span></a></h6>
+						<h6><a href="{% url 'moviesingle' %}">into the wild <span>(2014)</span></a></h6>
 						<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
 						<p class="describe">As Steve Rogers struggles to embrace his role in the modern world, he teams up with a fellow Avenger and S.H.I.E.L.D agent, Black Widow, to battle a new threat...</p>
 						<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
@@ -292,7 +292,7 @@
 				<div class="movie-item-style-2">
 					<img src="{% static 'images/uploads/mv3.jpg' %}" alt="">
 					<div class="mv-item-infor">
-						<h6><a href="moviesingle.html">blade runner  <span>(2015)</span></a></h6>
+						<h6><a href="{% url 'moviesingle' %}">blade runner  <span>(2015)</span></a></h6>
 						<p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
 						<p class="describe">Armed with a super-suit with the astonishing ability to shrink in scale but increase in strength, cat burglar Scott Lang must embrace his inner hero and help...</p>
 						<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
@@ -303,7 +303,7 @@
 				<div class="movie-item-style-2">
 					<img src="{% static 'images/uploads/mv4.jpg' %}" alt="">
 					<div class="mv-item-infor">
-						<h6><a href="moviesingle.html">Mulholland pride<span> (2013)  </span></a></h6>
+						<h6><a href="{% url 'moviesingle' %}">Mulholland pride<span> (2013)  </span></a></h6>
 						<p class="rate"><i class="ion-android-star"></i><span>7.2</span> /10</p>
 						<p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
 						<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
@@ -314,7 +314,7 @@
 				<div class="movie-item-style-2">
 					<img src="{% static 'images/uploads/mv5.jpg' %}" alt="">
 					<div class="mv-item-infor">
-						<h6><a href="moviesingle.html">skyfall: evil of boss<span> (2013)  </span></a></h6>
+						<h6><a href="{% url 'moviesingle' %}">skyfall: evil of boss<span> (2013)  </span></a></h6>
 						<p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
 						<p class="describe">When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.</p>
 						<p class="run-time"> Run Time: 2h21’    .     <span>MMPA: PG-13 </span>    .     <span>Release: 1 May 2015</span></p>
@@ -425,7 +425,7 @@
 	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
+				 <a href="{% url 'index-2' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
 				 <p>5th Avenue st, manhattan<br>
 				New York, NY 10001</p>
 				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>

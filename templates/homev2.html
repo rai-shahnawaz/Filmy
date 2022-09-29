@@ -135,7 +135,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
+				    <a href="{% url 'index-2' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -148,9 +148,9 @@
 							Home <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="index-2.html">Home 01</a></li>
-								<li><a href="homev2.html">Home 02</a></li>
-								<li><a href="homev3.html">Home 03</a></li>
+								<li><a href="{% url 'index-2' %}">Home 01</a></li>
+								<li><a href="{% url 'homev2' %}">Home 02</a></li>
+								<li><a href="{% url 'homev3' %}">Home 03</a></li>
 							</ul>
 						</li>	
 						<li class="dropdown first">
@@ -161,14 +161,14 @@
 								<!-- <li class="dropdown">
 									<a href="#">about us <i class="fa fa-caret-right" aria-hidden="true"></i></a>
 									<ul class="dropdown-menu level2">
-										<li><a href="aboutv1.html">About Us 01</a></li>
-										<li><a href="aboutv2.html">About Us 02</a></li>
+										<li><a href="{% url 'aboutv1' %}">About Us 01</a></li>
+										<li><a href="{% url 'aboutv2' %}">About Us 02</a></li>
 									</ul>
 								</li> -->
-								<li><a href="moviegrid.html">Movie grid</a></li>
-								<li><a href="moviegridfw.html">movie grid full width</a></li>
-								<li><a href="movielist.html">Movie list</a></li>
-								<li class="it-last"><a href="moviesingle.html">Movie single</a></li>
+								<li><a href="{% url 'moviegrid' %}">Movie grid</a></li>
+								<li><a href="{% url 'moviegridfw' %}">movie grid full width</a></li>
+								<li><a href="{% url 'movielist' %}">Movie list</a></li>
+								<li class="it-last"><a href="{% url 'moviesingle' %}">Movie single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -176,10 +176,10 @@
 							celebrities <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="celebritygrid01.html">celebrity grid 01</a></li>
-								<li><a href="celebritygrid02.html">celebrity grid 02 </a></li>
-								<li><a href="celebritylist.html">celebrity list</a></li>
-								<li class="it-last"><a href="celebritysingle.html">celebrity single</a></li>
+								<li><a href="{% url 'celebritygrid01' %}">celebrity grid 01</a></li>
+								<li><a href="{% url 'celebritygrid02' %}">celebrity grid 02 </a></li>
+								<li><a href="{% url 'celebritylist' %}">celebrity list</a></li>
+								<li class="it-last"><a href="{% url 'celebritysingle' %}">celebrity single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -187,9 +187,9 @@
 							news <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="bloglist.html">blog List</a></li>
-								<li><a href="bloggrid.html">blog Grid</a></li>
-								<li class="it-last"><a href="blogdetail.html">blog Detail</a></li>
+								<li><a href="{% url 'bloglist' %}">blog List</a></li>
+								<li><a href="{% url 'bloggrid' %}">blog Grid</a></li>
+								<li class="it-last"><a href="{% url 'blogdetail' %}">blog Detail</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -197,10 +197,10 @@
 							community <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="userfavoritegrid.html">user favorite grid</a></li>
-								<li><a href="userfavoritelist.html">user favorite list</a></li>
-								<li><a href="userprofile.html">user profile</a></li>
-								<li class="it-last"><a href="userrate.html">user rate</a></li>
+								<li><a href="{% url 'userfavoritegrid' %}">user favorite grid</a></li>
+								<li><a href="{% url 'userfavoritelist' %}">user favorite list</a></li>
+								<li><a href="{% url 'userprofile' %}">user profile</a></li>
+								<li class="it-last"><a href="{% url 'userrate' %}">user rate</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -210,9 +210,9 @@
 							pages <i class="fa fa-angle-down" aria-hidden="true"></i>
 							</a>
 							<ul class="dropdown-menu level1">
-								<li><a href="landing.html">Landing</a></li>
-								<li><a href="404.html">404 Page</a></li>
-								<li class="it-last"><a href="comingsoon.html">Coming soon</a></li>
+								<li><a href="{% url 'landing' %}">Landing</a></li>
+								<li><a href="{% url '404' %}">404 Page</a></li>
+								<li class="it-last"><a href="{% url 'comingsoon' %}">Coming soon</a></li>
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
@@ -351,7 +351,7 @@
 				            				<img src="{% static 'images/uploads/mv-it1.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -365,7 +365,7 @@
 				            				<img src="{% static 'images/uploads/mv-it2.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The revenant</a></h6>
@@ -379,7 +379,7 @@
 				            				<img src="{% static 'images/uploads/mv-it3.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -393,7 +393,7 @@
 				            				<img src="{% static 'images/uploads/mv-it4.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The walk</a></h6>
@@ -407,7 +407,7 @@
 				            				<img src="{% static 'images/uploads/mv-it5.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -421,7 +421,7 @@
 				            				<img src="{% static 'images/uploads/mv-it6.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -435,7 +435,7 @@
 				            				<img src="{% static 'images/uploads/mv-it7.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -449,7 +449,7 @@
 				            				<img src="{% static 'images/uploads/mv-it8.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -469,7 +469,7 @@
 				            				<img src="{% static 'images/uploads/mv-it4.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The walk</a></h6>
@@ -483,7 +483,7 @@
 				            				<img src="{% static 'images/uploads/mv-it5.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -497,7 +497,7 @@
 				            				<img src="{% static 'images/uploads/mv-it6.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -511,7 +511,7 @@
 				            				<img src="{% static 'images/uploads/mv-it7.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -525,7 +525,7 @@
 				            				<img src="{% static 'images/uploads/mv-it8.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -545,7 +545,7 @@
 				            				<img src="{% static 'images/uploads/mv-it1.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -559,7 +559,7 @@
 				            				<img src="{% static 'images/uploads/mv-it2.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The revenant</a></h6>
@@ -573,7 +573,7 @@
 				            				<img src="{% static 'images/uploads/mv-it3.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -587,7 +587,7 @@
 				            				<img src="{% static 'images/uploads/mv-it4.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The walk</a></h6>
@@ -601,7 +601,7 @@
 				            				<img src="{% static 'images/uploads/mv-it5.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -621,7 +621,7 @@
 				            				<img src="{% static 'images/uploads/mv-it5.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -635,7 +635,7 @@
 				            				<img src="{% static 'images/uploads/mv-it6.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -649,7 +649,7 @@
 				            				<img src="{% static 'images/uploads/mv-it7.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -663,7 +663,7 @@
 				            				<img src="{% static 'images/uploads/mv-it8.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -697,7 +697,7 @@
 				            				<img src="{% static 'images/uploads/mv-it7.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -711,7 +711,7 @@
 				            				<img src="{% static 'images/uploads/mv-it8.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The revenant</a></h6>
@@ -725,7 +725,7 @@
 				            				<img src="{% static 'images/uploads/mv-it9.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -739,7 +739,7 @@
 				            				<img src="{% static 'images/uploads/mv-it4.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The walk</a></h6>
@@ -753,7 +753,7 @@
 				            				<img src="{% static 'images/uploads/mv-it5.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -767,7 +767,7 @@
 				            				<img src="{% static 'images/uploads/mv-it6.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -781,7 +781,7 @@
 				            				<img src="{% static 'images/uploads/mv-it7.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -795,7 +795,7 @@
 				            				<img src="{% static 'images/uploads/mv-it8.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -815,7 +815,7 @@
 				            				<img src="{% static 'images/uploads/mv-it4.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The walk</a></h6>
@@ -829,7 +829,7 @@
 				            				<img src="{% static 'images/uploads/mv-it5.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -843,7 +843,7 @@
 				            				<img src="{% static 'images/uploads/mv-it6.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -857,7 +857,7 @@
 				            				<img src="{% static 'images/uploads/mv-it7.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -871,7 +871,7 @@
 				            				<img src="{% static 'images/uploads/mv-it8.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -890,7 +890,7 @@
 			            				<img src="{% static 'images/uploads/mv-it1.jpg' %}" alt="">
 			            			</div>
 			            			<div class="hvr-inner">
-			            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+			            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 			            			</div>
 			            			<div class="title-in">
 			            				<h6><a href="#">Interstellar</a></h6>
@@ -902,7 +902,7 @@
 			            				<img src="{% static 'images/uploads/mv-it2.jpg' %}" alt="">
 			            			</div>
 			            			<div class="hvr-inner">
-			            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+			            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 			            			</div>
 			            			<div class="title-in">
 			            				<h6><a href="#">The revenant</a></h6>
@@ -914,7 +914,7 @@
 			            				<img src="{% static 'images/uploads/mv-it3.jpg' %}" alt="">
 			            			</div>
 			            			<div class="hvr-inner">
-			            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+			            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 			            			</div>
 			            			<div class="title-in">
 			            				<h6><a href="#">Die hard</a></h6>
@@ -926,7 +926,7 @@
 			            				<img src="{% static 'images/uploads/mv-it4.jpg' %}" alt="">
 			            			</div>
 			            			<div class="hvr-inner">
-			            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+			            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 			            			</div>
 			            			<div class="title-in">
 			            				<h6><a href="#">The walk</a></h6>
@@ -938,7 +938,7 @@
 			            				<img src="{% static 'images/uploads/mv-it3.jpg' %}" alt="">
 			            			</div>
 			            			<div class="hvr-inner">
-			            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+			            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 			            			</div>
 			            			<div class="title-in">
 			            				<h6><a href="#">Die hard</a></h6>
@@ -957,7 +957,7 @@
 				            				<img src="{% static 'images/uploads/mv-it4.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">The walk</a></h6>
@@ -971,7 +971,7 @@
 				            				<img src="{% static 'images/uploads/mv-it5.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -985,7 +985,7 @@
 				            				<img src="{% static 'images/uploads/mv-it6.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Interstellar</a></h6>
@@ -999,7 +999,7 @@
 				            				<img src="{% static 'images/uploads/mv-it7.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -1013,7 +1013,7 @@
 				            				<img src="{% static 'images/uploads/mv-it8.jpg' %}" alt="">
 				            			</div>
 				            			<div class="hvr-inner">
-				            				<a  href="moviesingle.html"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+				            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
 				            			</div>
 				            			<div class="title-in">
 				            				<h6><a href="#">Die hard</a></h6>
@@ -1164,37 +1164,37 @@
 				</div>
 				<div class="title-hd">
 					<h2>Latest news</h2>
-					<a href="bloggrid.html" class="viewall">see all news <i class="ion-ios-arrow-right"></i></a>
+					<a href="{% url 'bloggrid' %}" class="viewall">see all news <i class="ion-ios-arrow-right"></i></a>
 				</div>
 				<div class="latestnewv2">
 					<div class="blog-item-style-2">
-						<a href="blogdetail.html"><img src="{% static 'images/uploads/blogv21.jpg' %}" alt=""></a>
+						<a href="{% url 'blogdetail' %}"><img src="{% static 'images/uploads/blogv21.jpg' %}" alt=""></a>
 						<div class="blog-it-infor">
-							<h3><a href="blogdetail.html">Godzilla: King Of The Monsters Adds O’Shea Jackson Jr</a></h3>
+							<h3><a href="{% url 'blogdetail' %}">Godzilla: King Of The Monsters Adds O’Shea Jackson Jr</a></h3>
 							<span class="time">27 Mar 2017</span>
 							<p>Looks like Kong: Skull Island started a tradition with its casting of Straight ...</p>
 						</div>
 					</div>
 					<div class="blog-item-style-2">
-						<a href="blogdetail.html"><img src="{% static 'images/uploads/blogv22.jpg' %}" alt=""></a>
+						<a href="{% url 'blogdetail' %}"><img src="{% static 'images/uploads/blogv22.jpg' %}" alt=""></a>
 						<div class="blog-it-infor">
-							<h3><a href="blogdetail.html">First Official Images of Alicia Vikander As Tomb Raider’s Lara Croft</a></h3>
+							<h3><a href="{% url 'blogdetail' %}">First Official Images of Alicia Vikander As Tomb Raider’s Lara Croft</a></h3>
 							<span class="time">27 Mar 2017</span>
 							<p>Aside from the her digital incarnation, the most recognisable image of Tomb ...</p>
 						</div>
 					</div>
 					<div class="blog-item-style-2">
-						<a href="blogdetail.html"><img src="{% static 'images/uploads/blogv23.jpg' %}" alt=""></a>
+						<a href="{% url 'blogdetail' %}"><img src="{% static 'images/uploads/blogv23.jpg' %}" alt=""></a>
 						<div class="blog-it-infor">
-							<h3><a href="blogdetail.html">New Spider-Man: Homecoming Poster Finds Peter Parker At Rest</a></h3>
+							<h3><a href="{% url 'blogdetail' %}">New Spider-Man: Homecoming Poster Finds Peter Parker At Rest</a></h3>
 							<span class="time">27 Mar 2017</span>
 							<p>He might be a primary protector of New York City, but at heart, Peter Parker is ...</p>
 						</div>
 					</div>
 					<div class="blog-item-style-2">
-						<a href="blogdetail.html"><img src="{% static 'images/uploads/blogv24.jpg' %}" alt=""></a>
+						<a href="{% url 'blogdetail' %}"><img src="{% static 'images/uploads/blogv24.jpg' %}" alt=""></a>
 						<div class="blog-it-infor">
-							<h3><a href="blogdetail.html">Joseph Gordon-Levitt Directing Moive Musical Comedy Wingmen</a></h3>
+							<h3><a href="{% url 'blogdetail' %}">Joseph Gordon-Levitt Directing Moive Musical Comedy Wingmen</a></h3>
 							<span class="time">27 Mar 2017</span>
 							<p>A little over a year ago, we learned that Joseph Gordon-Levitt and Channing ...</p>
 						</div>
@@ -1227,7 +1227,7 @@
 	<div class="row">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
+				 <a href="{% url 'index-2' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
 				 <p>5th Avenue st, manhattan<br>
 				New York, NY 10001</p>
 				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
