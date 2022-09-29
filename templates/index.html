@@ -8,10 +8,8 @@
 <!--[if !(IE 7) | !(IE 8)  ]><!-->
 <html lang="en" class="no-js">
 
-
+{% load static %}
 <head>
-	{% load static %}
-
 	<!-- Basic need -->
 	<title>Open Pediatrics</title>
 	<meta charset="UTF-8">
@@ -134,7 +132,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="./templates/index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
+				    <a href="{% url 'index-2' %}"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">

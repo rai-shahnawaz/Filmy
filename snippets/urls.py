@@ -21,7 +21,8 @@ urlpatterns = [
     path('subgenres/', SubGenreList.as_view()),
     path('badges/', BadgeList.as_view()),
     
-    path('index/', MovieList.as_view(), name='index')
+    # path('index/', MovieList.as_view(), name='index')
+    
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
