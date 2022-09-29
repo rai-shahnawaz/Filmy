@@ -25,14 +25,14 @@
 	<meta name="format-detection" content="telephone-no">
 
 	<!-- CSS files -->
-	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 <body>
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
+    <img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58">
     <div id="status">
         <span></span>
         <span></span>
@@ -133,7 +133,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index_light.html"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
+				    <a href="index_light.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -256,7 +256,7 @@
 				<div class="blog-detail-ct">
 					<h1>New Character Posters For Pirates Of The Caribbean</h1>
 					<span class="time">27 Mar 2017</span>
-					<img src="images/uploads/blog-detail.jpg" alt="">
+					<img src="{% static 'images/uploads/blog-detail.jpg' %}" alt="">
 					<p>
 					Joss Whedon has a little bit of a history with superhero movies, and for creating layered female characters. After his documented frustrations with Wonder Woman, he's getting another chance at the DC Extended Universe and Warner Bros., closing in on a deal to write direct and produce a Batgirl movie.</p>
 
@@ -270,7 +270,7 @@
 
 							I’m friends with the producer who I worked with on Byzantium and he sent it to me. I read the book as well, which is fantastic. You’re always looking for untold stories and many times they’re women’s stories. What surprised me is that it centers around a woman who’s really quite timid. I guess she’s allowed to be because all of the other characters.
 						</p>
-						<img src="images/uploads/blog-detail2.jpg" alt="">
+						<img src="{% static 'images/uploads/blog-detail2.jpg' %}" alt="">
 					</div>
 					<p>Man Down debuted simultaneously on digital platforms in the U.K., meaning it was never going to be a big earner in theaters. But no one expected only one ticket sale. As of Tuesday, the Reel Cinema in Burnley was still carrying Man Down, which also stars Gary Oldman, Jai Courtney and Kate Mara.</p>
 					<p>In the film, LaBeouf stars as a war veteran suffering from PTSD following his return from Afghanistan. The indie project, reuniting the star with A Guide to Recognizing Your Saints director Dito Montile, made its world premiere at the 2016 Venice Film Festival before making making a stop at the Toronto International Film Festival.</p>
@@ -295,7 +295,7 @@
 					<div class="comments">
 						<h4>04 Comments</h4>
 						<div class="cmt-item flex-it">
-							<img src="images/uploads/author.png" alt="">
+							<img src="{% static 'images/uploads/author.png' %}" alt="">
 							<div class="author-infor">
 								<div class="flex-it2">
 									<h6><a href="#">Steve Perry</a></h6> <span class="time"> - 27 Mar 2017</span>
@@ -305,7 +305,7 @@
 							</div>
 						</div>
 						<div class="cmt-item flex-it reply">
-							<img src="images/uploads/author2.png" alt="">
+							<img src="{% static 'images/uploads/author2.png' %}" alt="">
 							<div class="author-infor">
 								<div class="flex-it2">
 									<h6><a href="#">Joss Whedon</a></h6> <span class="time"> - 27 Mar 2017</span>
@@ -314,7 +314,7 @@
 							</div>
 						</div>
 						<div class="cmt-item flex-it reply">
-							<img src="images/uploads/author3.png" alt="">
+							<img src="{% static 'images/uploads/author3.png' %}" alt="">
 							<div class="author-infor">
 								<div class="flex-it2">
 									<h6><a href="#">Dave McNary</a></h6> <span class="time"> - 27 Mar 2017</span>
@@ -323,7 +323,7 @@
 							</div>
 						</div>
 						<div class="cmt-item flex-it">
-							<img src="images/uploads/author4.png" alt="">
+							<img src="{% static 'images/uploads/author4.png' %}" alt="">
 							<div class="author-infor">
 								<div class="flex-it2">
 									<h6><a href="#">Margot Robbie</a></h6> <span class="time"> - 27 Mar 2017</span>
@@ -399,7 +399,7 @@
 						</ul>
 					</div>
 					<div class="ads">
-						<img src="images/uploads/ads1.png" alt="">
+						<img src="{% static 'images/uploads/ads1.png' %}" alt="">
 					</div>
 				</div>
 			</div>
@@ -413,7 +413,7 @@
 	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="images/logo1.png" alt=""></a>
+				 <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
 				 <p>5th Avenue st, manhattan<br>
 				New York, NY 10001</p>
 				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
@@ -467,10 +467,10 @@
 </footer>
 <!-- end of footer section-->
 
-<script src="js/jquery.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/plugins2.js"></script>
-<script src="js/custom.js"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/plugins2.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 <!-- blogdetail_light16:31-->

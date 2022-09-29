@@ -25,14 +25,14 @@
 	<meta name="format-detection" content="telephone-no">
 
 	<!-- CSS files -->
-	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 <body>
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
+    <img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58">
     <div id="status">
         <span></span>
         <span></span>
@@ -122,7 +122,7 @@
 	<div class="container">
 		<div class="row ipad-width">
 			<div class="left-content">
-				<a href="index-2.html"><img class="md-logo" src="images/logo1.png" alt=""></a>
+				<a href="index-2.html"><img class="md-logo" src="{% static 'images/logo1.png' %}" alt=""></a>
 				<h1>Coming soon</h1>
 				<p>We are working hard to get back to you in</p>
 				<div class="row">
@@ -157,7 +157,7 @@
 						</form>
 					</div>
 					<div class="col-md-6 col-sm-12 col-xs-12">
-						<img class="cm-img" src="images/uploads/cm-img.png" alt="">
+						<img class="cm-img" src="{% static 'images/uploads/cm-img.png' %}" alt="">
 					</div>
 				</div>
 				
@@ -165,10 +165,10 @@
 		</div>
 	</div>
 </div>
-<script src="js/jquery.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/plugins2.js"></script>
-<script src="js/custom.js"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/plugins2.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 <!-- comingsoon14:55-->

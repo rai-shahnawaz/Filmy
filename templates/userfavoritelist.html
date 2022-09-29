@@ -25,14 +25,14 @@
 	<meta name="format-detection" content="telephone-no">
 
 	<!-- CSS files -->
-	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 <body>
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
+    <img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58">
     <div id="status">
         <span></span>
         <span></span>
@@ -133,7 +133,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index-2.html"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
+				    <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -253,7 +253,7 @@
 			<div class="col-md-3 col-sm-12 col-xs-12">
 				<div class="user-information">
 					<div class="user-img">
-						<a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
+						<a href="#"><img src="{% static 'images/uploads/user-img.png' %}" alt=""><br></a>
 						<a href="#" class="redbtn">Change avatar</a>
 					</div>
 					<div class="user-fav">
@@ -286,7 +286,7 @@
 				</div>
 				<div class="flex-wrap-movielist user-fav-list">
 					<div class="movie-item-style-2">
-						<img src="images/uploads/mv1.jpg" alt="">
+						<img src="{% static 'images/uploads/mv1.jpg' %}" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="#">oblivion <span>(2012)</span></a></h6>
 							<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
@@ -297,7 +297,7 @@
 						</div>
 					</div>
 					<div class="movie-item-style-2">
-						<img src="images/uploads/mv2.jpg" alt="">
+						<img src="{% static 'images/uploads/mv2.jpg' %}" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="#">into the wild <span>(2014)</span></a></h6>
 							<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
@@ -308,7 +308,7 @@
 						</div>
 					</div>
 					<div class="movie-item-style-2">
-						<img src="images/uploads/mv3.jpg" alt="">
+						<img src="{% static 'images/uploads/mv3.jpg' %}" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="#">blade runner  <span>(2015)</span></a></h6>
 							<p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
@@ -319,7 +319,7 @@
 						</div>
 					</div>
 					<div class="movie-item-style-2">
-						<img src="images/uploads/mv4.jpg" alt="">
+						<img src="{% static 'images/uploads/mv4.jpg' %}" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="#">Mulholland pride<span> (2013)  </span></a></h6>
 							<p class="rate"><i class="ion-android-star"></i><span>7.2</span> /10</p>
@@ -330,7 +330,7 @@
 						</div>
 					</div>
 					<div class="movie-item-style-2">
-						<img src="images/uploads/mv5.jpg" alt="">
+						<img src="{% static 'images/uploads/mv5.jpg' %}" alt="">
 						<div class="mv-item-infor">
 							<h6><a href="#">skyfall: evil of boss<span> (2013)  </span></a></h6>
 							<p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
@@ -368,7 +368,7 @@
 	<div class="container">
 		<div class="flex-parent-ft">
 			<div class="flex-child-ft item1">
-				 <a href="index-2.html"><img class="logo" src="images/logo1.png" alt=""></a>
+				 <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt=""></a>
 				 <p>5th Avenue st, manhattan<br>
 				New York, NY 10001</p>
 				<p>Call us: <a href="#">(+01) 202 342 6789</a></p>
@@ -422,10 +422,10 @@
 </footer>
 <!-- end of footer section-->
 
-<script src="js/jquery.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/plugins2.js"></script>
-<script src="js/custom.js"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/plugins2.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 <!-- userfavoritelist14:04-->

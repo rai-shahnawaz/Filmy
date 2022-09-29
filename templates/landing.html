@@ -25,14 +25,14 @@
 	<meta name="format-detection" content="telephone-no">
 
 	<!-- CSS files -->
-	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 <body>
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
+    <img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58">
     <div id="status">
         <span></span>
         <span></span>
@@ -120,7 +120,7 @@
 <!--end of signup form popup-->
 
 <div class="landing-hero">
-	<img src="images/logo1.png" alt="Logo">
+	<img src="{% static 'images/logo1.png' %}" alt="Logo">
 	<div class="row landing-hero-text">
 		<h2>MOST COMPLETED</h2>
 		<h2 class="text-yellow">FILM REVIEW  &middot;  MOVIE DATABASE</h2>
@@ -131,12 +131,12 @@
 <div class="landing-version">
 	<div class="container">
 		<div class="col-md-6">
-			<img src="images/uploads/landing-dark-version.png" alt="Dark Version">
+			<img src="{% static 'images/uploads/landing-dark-version.png' %}" alt="Dark Version">
 			<h2>DARK VERSION</h2>
 			<a href="index-2.html" target="blank_" class="redbtn">SEE DEMO</a>
 		</div>
 		<div class="col-md-6">
-			<img src="images/uploads/landing-light-version.png" alt="Light Version">
+			<img src="{% static 'images/uploads/landing-light-version.png' %}" alt="Light Version">
 			<h2>LIGHT VERSION</h2>
 			<a href="index_light.html" target="blank_" class="redbtn">SEE DEMO</a>
 		</div>
@@ -148,10 +148,10 @@
 </div>
 <!-- end of footer v3 section-->
 
-<script src="js/jquery.js"></script>
-<script src="js/plugins.js"></script>
-<script src="js/plugins2.js"></script>
-<script src="js/custom.js"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/plugins2.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 <!-- landing14:38-->

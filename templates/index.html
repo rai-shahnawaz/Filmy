@@ -27,10 +27,14 @@
 	<meta name="format-detection" content="telephone-no">
 
 	<!-- CSS files -->
-	<link rel="stylesheet" href="css/plugins.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<script>
+	setTimeout(()=>{document.getElementById("preloader").style.display = "none";},2000)
 
+</script>
 </head>
+
 <body>
 <!--preloading-->
 <div id="preloader">
@@ -135,7 +139,7 @@
 							<span></span>
 						</div>
 				    </div>
-				    <a href="index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
+				    <a href="./templates/index-2.html"><img class="logo" src="{% static 'images/logo1.png' %}" alt="" width="119" height="58"></a>
 			    </div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
@@ -1234,22 +1238,22 @@
 				<div class="videos">
 				 	<div class="slider-for-2 video-ft">
 				 		<div>
-					    	<iframe class="item-video" src="{% static '#" data-src="{% static 'https://www.youtube.com/embed/1Q8fG0TtVAY"></iframe>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/1Q8fG0TtVAY"></iframe>
 					    </div>
 					    <div>
-					    	<iframe class="item-video" src="{% static '#" data-src="{% static 'https://www.youtube.com/embed/w0qQkSuWOS8"></iframe>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/w0qQkSuWOS8"></iframe>
 					    </div>
 					    <div>
-					    	<iframe class="item-video" src="{% static '#" data-src="{% static 'https://www.youtube.com/embed/44LdLqgOpjo"></iframe>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/44LdLqgOpjo"></iframe>
 					    </div>
 					    <div>
-					    	<iframe class="item-video" src="{% static '#" data-src="{% static 'https://www.youtube.com/embed/gbug3zTm3Ws"></iframe>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/gbug3zTm3Ws"></iframe>
 					    </div>
 					    <div>
-					    	<iframe class="item-video" src="{% static '#" data-src="{% static 'https://www.youtube.com/embed/e3Nl_TCQXuw"></iframe>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/e3Nl_TCQXuw"></iframe>
 					    </div>
 					    <div>
-					    	<iframe class="item-video" src="{% static '#" data-src="{% static 'https://www.youtube.com/embed/NxhEZG0k9_w"></iframe>
+					    	<iframe class="item-video" src="#" data-src="https://www.youtube.com/embed/NxhEZG0k9_w"></iframe>
 					    </div>
 						
 						
@@ -1406,7 +1410,7 @@
 				<div class="sidebar">
 					<div class="sb-facebook sb-it">
 						<h4 class="sb-title">Find us on Facebook</h4>
-						<iframe src="{% static '#" data-src="{% static 'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftemplatespoint.net%2F%3Ffref%3Dts&tabs=timeline&width=300&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId" width="300" height="315" style="border:none;overflow:hidden" ></iframe>
+						<iframe src="#" data-src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ftemplatespoint.net%2F%3Ffref%3Dts&tabs=timeline&width=300&height=315px&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId" width="300" height="315" style="border:none;overflow:hidden" ></iframe>
 					</div>
 					<div class="sb-twitter sb-it">
 						<h4 class="sb-title">Tweet to us</h4>
@@ -1482,10 +1486,10 @@
 </footer>
 <!-- end of footer section-->
 
-<script src="{% static 'js/jquery.js"></script>
-<script src="{% static 'js/plugins.js"></script>
-<script src="{% static 'js/plugins2.js"></script>
-<script src="{% static 'js/custom.js"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/plugins2.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 
