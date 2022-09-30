@@ -138,3 +138,5 @@ GitHub.sublime-settings
 .history
 .vscode
 snippets/__pycache__/*
+snippets/__pycache__/urls.cpython-39.pyc
+snippets/__pycache__/views.cpython-39.pyc
