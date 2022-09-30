@@ -56,28 +56,32 @@ class UpdateProfileView(generics.UpdateAPIView):
     serializer_class = UpdateUserSerializer
     
     
-@user_is_entry_author
 class FilmList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Film.objects.all()
     serializer_class = FilmSerializer
 
 
 class FilmDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Film.objects.all()
     serializer_class = FilmSerializer
     
     
 class GenreList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
     
     
 class SubGenreList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = SubGenre.objects.all()
     serializer_class = SubGenreSerializer
     
     
 class BadgeList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     queryset = SubGenre.objects.all()
     serializer_class = BadgeSerializer
     
@@ -89,3 +93,4 @@ class MovieList(APIView):
     def get(self, request):
         queryset = Film.objects.all()
         return Response({'films': queryset})
+    

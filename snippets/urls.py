@@ -15,7 +15,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('logout_all/', LogoutAllView.as_view(), name='logout_all'),
 
-    path('films/', FilmList),
+    path('films/', FilmList.as_view()),
     path('<int:pk>/', FilmDetail.as_view()),
     path('genres/', GenreList.as_view()),
     path('subgenres/', SubGenreList.as_view()),
