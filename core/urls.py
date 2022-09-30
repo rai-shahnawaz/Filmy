@@ -26,8 +26,8 @@ urlpatterns = [
     
     # path('index/', TemplateView.as_view(template_name='index.html'),
     #                     name='index'),
-    # path('index-2/', TemplateView.as_view(template_name='index-2.html'),
-    #                     name='index-2'),
+    # path('index/', TemplateView.as_view(template_name='index.html'),
+    #                     name='index'),
 ]
 
 dir = os.path.join(BASE_DIR, 'templates')
