@@ -123,8 +123,8 @@
 
 <!-- BEGIN | Header -->
 <header class="ht-header full-width-hd">
-		<div class="row">
-			<nav id="mainNav" class="navbar navbar-default navbar-custom">
+	<div class="row">
+		<nav id="mainNav" class="navbar navbar-default navbar-custom">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header logo">
 				    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -163,7 +163,8 @@
 								<li><a href="{% url 'moviegrid' %}">Movie grid</a></li>
 								<li><a href="{% url 'moviegridfw' %}">movie grid full width</a></li>
 								<li><a href="{% url 'movielist' %}">Movie list</a></li>
-								<li class="it-last"><a href="{% url 'moviesingle' %}">Movie single</a></li>
+								<li><a href="{% url 'moviesingle' %}">Movie single</a></li>
+								<li class="it-last"><a href="{% url 'seriessingle' %}">Series single</a></li>
 							</ul>
 						</li>
 						<li class="dropdown first">
@@ -218,8 +219,14 @@
 			<!-- /.navbar-collapse -->
 	    </nav>
 	    <!-- search form -->
-		</div>
-	
+		<div class="top-search">
+	    	<select>
+				<option value="united">TV show</option>
+				<option value="saab">Others</option>
+			</select>
+			<input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
+	    </div>
+	</div>
 </header>
 <!-- END | Header -->
 
