@@ -2,7 +2,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .neomodels import MovieList
-from snippets.neomodels import Film
+
 
 # User-facing endpoints for personal lists
 @api_view(['POST'])
@@ -76,7 +76,7 @@ from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .neomodels import MovieList
-from snippets.neomodels import Film
+
 from .serializers import MovieListSerializer
 
 class MovieListListCreateView(generics.ListCreateAPIView):

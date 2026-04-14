@@ -30,7 +30,7 @@ from movies.views import export_people_json, import_people_json, export_people_c
 from movies.views import search_movies, search_series, search_people, search_lists, add_favorite, remove_favorite, add_watchlist, remove_watchlist, add_rating, add_review, get_ratings_reviews, get_recommendations
 from movies.views import user_dashboard
 from movies.views import homepage
-from snippets.neoviews import MovieListView, MovieSearchView, MovieRateView, MovieReviewView
+
 
 urlpatterns = [
                 path('', homepage, name='homepage'),

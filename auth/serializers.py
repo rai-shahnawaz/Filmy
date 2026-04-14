@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
-from snippets.models import UserProfile
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -39,12 +39,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         user.set_password(validated_data['password'])
         user.save()
-        user_profile = UserProfile.objects.create(
-            user=user,
-            email=validated_data['email'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-        )
         return user
 
 class ChangePasswordSerializer(serializers.ModelSerializer):
@@ -107,9 +101,4 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         instance.email = validated_data['email']
         instance.username = validated_data['username']
         instance.save()
-        user_profile = UserProfile.objects.get(user=instance)
-        user_profile.first_name = validated_data['first_name']
-        user_profile.last_name = validated_data['last_name']
-        user_profile.email = validated_data['email']
-        user_profile.save()
         return instance

@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
-# Homepage endpoint
+# Homepage endpoint (public landing page, not dashboard)
 def homepage(request):
+	# You can add context for featured movies, stats, etc. here if desired
 	return render(request, 'index.html')
 # User dashboard endpoint: activity, stats, contributions
 from django.utils import timezone

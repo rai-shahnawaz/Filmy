@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .neomodels import MovieList
-from snippets.neomodels import Film
+
 
 class MovieListSerializer(serializers.Serializer):
     name = serializers.CharField()

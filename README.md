@@ -27,7 +27,6 @@ snippets/
     tests.py
     urls.py
     views.py
-    migrations/
 static/
     css/
     fonts/
@@ -101,12 +100,12 @@ docker-compose down
 API endpoints are defined in `snippets/urls.py` and handled by `snippets/views.py`. For details, see the code or use the Swagger UI at `/swagger_ui.html` (if enabled).
 
 ## Running Tests
-```bash
+    - **media/**: Uploaded media files
 python manage.py test snippets
 ```
 
 ## Contributing
-1. Fork the repository
+    API endpoints are defined in `urls.py` and handled by `views.py`. For details, see the code or use the Swagger UI at `/swagger_ui.html` (if enabled).
 2. Create your feature branch (`git checkout -b feature/YourFeature`)
 3. Commit your changes (`git commit -am 'Add new feature'`)
 4. Push to the branch (`git push origin feature/YourFeature`)
