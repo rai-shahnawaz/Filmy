@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ou+7fx0^!&t+ezc1@f(hn*#ndo%%%@6f_h)fd@qowyp6cmlizr'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'ou+7fx0^!&t+ezc1@f(hn*#ndo%%%@6f_h)fd@qowyp6cmlizr')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') if os.environ.get('ALLOWED_HOSTS') else []
 
 
 # Application definition
@@ -85,16 +85,23 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Database configuration for Render (Postgres) or fallback to SQLite
+try:
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
     }
-}
+except ImportError:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Neo4j/Neomodel configuration
 NEOMODEL_NEO4J_BOLT_URL = os.environ.get('NEOMODEL_NEO4J_BOLT_URL', 'bolt://neo4j:password@localhost:7687')
-NEOMODEL_ENCRYPTED_CONNECTION = False
+NEOMODEL_ENCRYPTED_CONNECTION = os.environ.get('NEOMODEL_ENCRYPTED_CONNECTION', 'False') == 'True'
 NEOMODEL_SIGNALS = True
 
 
@@ -196,7 +203,11 @@ SPECTACULAR_SETTINGS = {
     'TAGS': [
         {'name': 'auth', 'description': 'Authentication endpoints.'},
         {'name': 'users', 'description': 'User management.'},
-        {'name': 'posts', 'description': 'Posts and content.'},
+        {'name': 'movies', 'description': 'Movies and series.'},
+        {'name': 'lists', 'description': 'User-created lists.'},
+        {'name': 'people', 'description': 'Celebrities and people.'},
+        {'name': 'recommendations', 'description': 'Recommendation engine.'},
+        {'name': 'reviews', 'description': 'User reviews and ratings.'},
     ],
     'SORT_OPERATIONS': True,
     'SWAGGER_UI_SETTINGS': {

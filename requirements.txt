@@ -8,3 +8,6 @@ pycparser==2.21
 PyJWT==2.5.0
 pytz==2022.2.1
 sqlparse==0.4.2
+dj-database-url
+drf-spectacular
+neomodel
