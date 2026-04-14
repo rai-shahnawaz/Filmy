@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'snippets',
     # 'knox',
     'rest_framework_simplejwt.token_blacklist',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -133,6 +134,7 @@ STATIC_ROOT = os.path.join(VENV_PATH, 'static_root')
 # DRF Settings
 REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         # 'rest_framework.authentication.BasicAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
@@ -166,4 +168,38 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': datetime.timedelta(minutes=30),
     'SLIDING_TOKEN_REFRESH_LIFETIME': datetime.timedelta(days=1),
+}
+
+# drf-spectacular settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'My Project API',
+    'DESCRIPTION': (
+        'REST API reference for all services.\n\n'
+        '### Quick Start\n'
+        '1. Use the login endpoint to get your access token.\n'
+        '2. Click **Authorize** and enter `Bearer <access_token>`.\n'
+        '3. Browse endpoints by tag.\n\n'
+        '### Response Format\n'
+        'All error responses follow `{ "detail": "..." }` format.\n'
+    ),
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'TAGS': [
+        {'name': 'auth', 'description': 'Authentication endpoints.'},
+        {'name': 'users', 'description': 'User management.'},
+        {'name': 'posts', 'description': 'Posts and content.'},
+    ],
+    'SORT_OPERATIONS': True,
+    'SWAGGER_UI_SETTINGS': {
+        'deepLinking': True,
+        'displayOperationId': True,
+        'docExpansion': 'list',
+        'defaultModelsExpandDepth': -1,
+        'filter': False,
+        'operationsSorter': 'alpha',
+        'tagsSorter': 'alpha',
+        'persistAuthorization': True,
+        'tryItOutEnabled': True,
+    },
+}
 }
