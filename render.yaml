@@ -1,0 +1,25 @@
+branch: main
+services:
+  - type: web
+    name: Filmy
+    env: python
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+    startCommand: gunicorn core.wsgi
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: core.settings
+      - key: SECRET_KEY
+        sync: false
+      - key: DEBUG
+        sync: false
+      - key: ALLOWED_HOSTS
+        sync: false
+      - key: NEOMODEL_NEO4J_BOLT_URL
+        sync: false
+      - key: NEOMODEL_ENCRYPTED_CONNECTION
+        sync: false
+    staticPublishPath: staticfiles  # Directory where collectstatic outputs files
+    healthCheckPath: /
