@@ -1,5 +1,5 @@
 from neomodel import StructuredNode, StringProperty, RelationshipTo, RelationshipFrom
-from snippets.neomodels import Film
+from movies.neomodels import Film
 
 class MovieList(StructuredNode):
     name = StringProperty(unique_index=True, required=True)

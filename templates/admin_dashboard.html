@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<ul>
+  <li>Total Films: {{ film_count }}</li>
+  <li>Total Series: {{ series_count }}</li>
+  <li>Total People: {{ person_count }}</li>
+</ul>
+<p><a href="/api/films/">Manage Films</a></p>
+<p><a href="/api/series/">Manage Series</a></p>
+<p><a href="/api/people/">Manage People</a></p>
+<!-- Add more links as needed -->
+{% endblock %}
