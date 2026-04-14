@@ -9,6 +9,10 @@ class MoviesUrlTests(SimpleTestCase):
         match = resolve("/api/")
         self.assertIs(match.func, homepage)
 
+    def test_root_route_resolves(self):
+        match = resolve("/")
+        self.assertIs(match.func, homepage)
+
     def test_search_movies_route_resolves(self):
         match = resolve(reverse("search_movies"))
         self.assertIs(match.func, search_movies)

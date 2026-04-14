@@ -17,6 +17,7 @@ import os
 from core.settings import BASE_DIR
 from django.contrib import admin
 from django.urls import path, include
+from movies.views import homepage
 
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -27,6 +28,7 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = [
+    path('', homepage, name='root-homepage'),
     path('admin/', admin.site.urls),
 
     path('api/', include('authentications.urls')),

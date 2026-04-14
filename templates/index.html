@@ -13,11 +13,11 @@
 {% load static %}
 <head>
 	<!-- Basic need -->
-	<title>Open Pediatrics</title>
+	<title>Filmy | Discover Movies, Series, Reviews and Watchlists</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
+	<meta name="description" content="Filmy helps you discover movies and series, browse celebrity profiles, track favorites, and explore reviews and watchlists.">
+	<meta name="keywords" content="Filmy, movies, series, reviews, watchlist, favorites, celebrities">
+	<meta name="author" content="Filmy">
 	<link rel="profile" href="#">
 
     <!--Google Font-->
@@ -50,7 +50,7 @@
         	<div class="row">
         		 <label for="username">
                     Username:
-                    <input type="text" name="username" id="username" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
+                    <input type="text" name="username" id="username" placeholder="filmyfan01" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
                 </label>
         	</div>
            
@@ -65,7 +65,7 @@
 					<div>
 						<input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
 					</div>
-            		<a href="#">Forget password ?</a>
+            		<a href="#">Forgot password?</a>
             	</div>
             </div>
            <div class="row">
@@ -76,7 +76,7 @@
         	<p>Or via social</p>
             <div class="social-btn-2">
             	<a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
-            	<a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
+            	<a class="tw" href="#"><i class="ion-social-twitter"></i>Twitter</a>
             </div>
         </div>
     </div>
@@ -86,18 +86,18 @@
 <div class="login-wrapper"  id="signup-content">
     <div class="login-content">
         <a href="#" class="close">x</a>
-        <h3>sign up</h3>
+        <h3>Sign Up</h3>
         <form method="post" action="#">
             <div class="row">
                  <label for="username-2">
                     Username:
-                    <input type="text" name="username" id="username-2" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
+                    <input type="text" name="username" id="username-2" placeholder="filmyfan01" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
                 </label>
             </div>
            
             <div class="row">
                 <label for="email-2">
-                    your email:
+                    Your email:
                     <input type="password" name="email" id="email-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
                 </label>
             </div>
@@ -114,7 +114,7 @@
                 </label>
             </div>
            <div class="row">
-             <button type="submit">sign up</button>
+             <button type="submit">Sign Up</button>
            </div>
         </form>
     </div>
@@ -144,7 +144,7 @@
 							<a href="#page-top"></a>
 						</li>
 						<li class="dropdown first">
-							<a href="{% url 'homev2' %}" class="btn btn-default dropdown-toggle lv1">
+							<a href="{% url 'index' %}" class="btn btn-default dropdown-toggle lv1">
 							Home
 							</a>
 						</li>
@@ -210,8 +210,8 @@
 							</ul>
 						</li>                
 						<li><a href="#">Help</a></li>
-						<li class="loginLink"><a href="#">LOG In</a></li>
-						<li class="btn signupLink"><a href="#">sign up</a></li>
+						<li class="loginLink"><a href="#">Log In</a></li>
+						<li class="btn signupLink"><a href="#">Sign Up</a></li>
 					</ul>
 				</div>
 			<!-- /.navbar-collapse -->
@@ -1458,7 +1458,7 @@
 			</div>
 			<div class="flex-child-ft item5">
 				<h4>Newsletter</h4>
-				<p>Subscribe to our newsletter system now <br> to get latest news from us.</p>
+				<p>Subscribe for fresh updates on trending movies, new series, and Filmy community picks.</p>
 				<form action="#">
 					<input type="text" placeholder="Enter your email...">
 				</form>
@@ -1468,7 +1468,7 @@
 	</div>
 	<div class="ft-copyright">
 		<div class="ft-left">
-			<p><a target="_blank" href="https://www.templateshub.net">Templates Hub</a></p>
+			<p>Filmy</p>
 		</div>
 		<div class="backtotop">
 			<p><a href="#" id="back-to-top">Back to top  <i class="ion-ios-arrow-thin-up"></i></a></p>
