@@ -1,3 +1,344 @@
+from django.shortcuts import render
+
+# Homepage endpoint
+def homepage(request):
+	return render(request, 'index.html')
+# User dashboard endpoint: activity, stats, contributions
+from django.utils import timezone
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def user_dashboard(request):
+	user_id = str(request.user.id)
+	from .neomodels import UserRating, UserReview, Favorite, Watchlist
+	from lists.neomodels import MovieList
+	# Ratings
+	ratings = list(UserRating.nodes.filter(user_id=user_id))
+	reviews = list(UserReview.nodes.filter(user_id=user_id))
+	favorites = list(Favorite.nodes.filter(user_id=user_id))
+	watchlist = list(Watchlist.nodes.filter(user_id=user_id))
+	lists = list(MovieList.nodes.filter(owner_id=user_id))
+	# Activity timeline (last 10 actions)
+	activity = []
+	for r in sorted(ratings, key=lambda x: x.created_at, reverse=True)[:3]:
+		activity.append({'type': 'rating', 'object': getattr(r, 'object_uid', None), 'value': r.rating, 'date': getattr(r, 'created_at', None)})
+	for rv in sorted(reviews, key=lambda x: x.created_at, reverse=True)[:3]:
+		activity.append({'type': 'review', 'object': getattr(rv, 'object_uid', None), 'text': rv.text, 'date': getattr(rv, 'created_at', None)})
+	for f in sorted(favorites, key=lambda x: x.created_at, reverse=True)[:2]:
+		activity.append({'type': 'favorite', 'object': getattr(f, 'film_uid', None), 'date': getattr(f, 'created_at', None)})
+	for w in sorted(watchlist, key=lambda x: x.created_at, reverse=True)[:2]:
+		activity.append({'type': 'watchlist', 'object': getattr(w, 'film_uid', None), 'date': getattr(w, 'created_at', None)})
+	activity = sorted(activity, key=lambda x: x.get('date', timezone.now()), reverse=True)[:10]
+	# Stats
+	stats = {
+		'ratings_count': len(ratings),
+		'reviews_count': len(reviews),
+		'favorites_count': len(favorites),
+		'watchlist_count': len(watchlist),
+		'lists_count': len(lists),
+	}
+	# Contributions (lists created)
+	contributions = [{'uid': l.uid, 'name': l.name, 'created_at': getattr(l, 'created_at', None)} for l in lists]
+	# Recent logins (from Django auth)
+	recent_logins = []
+	try:
+		from django.contrib.auth.models import User
+		user = User.objects.get(id=request.user.id)
+		if hasattr(user, 'last_login') and user.last_login:
+			recent_logins.append({'last_login': user.last_login})
+	except Exception:
+		pass
+	# Badges (stub, replace with real logic if available)
+	badges = []
+	if stats['ratings_count'] > 10:
+		badges.append({'name': 'Movie Buff', 'desc': 'Rated 10+ movies'})
+	if stats['reviews_count'] > 5:
+		badges.append({'name': 'Reviewer', 'desc': 'Wrote 5+ reviews'})
+	# Profile info
+	profile = {
+		'username': request.user.username,
+		'email': request.user.email,
+		'first_name': getattr(request.user, 'first_name', ''),
+		'last_name': getattr(request.user, 'last_name', ''),
+	}
+	return Response({
+		'profile': profile,
+		'activity': activity,
+		'stats': stats,
+		'contributions': contributions,
+		'recent_logins': recent_logins,
+		'badges': badges,
+	})
+# User-facing recommendations endpoint (basic: recommend by genre overlap with favorites/watchlist)
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_recommendations(request):
+	user_id = str(request.user.id)
+	from .neomodels import Favorite, Watchlist
+	# Gather genres from user's favorites and watchlist
+	genre_counter = {}
+	for fav in Favorite.nodes.filter(user_id=user_id):
+		film = fav.film.single()
+		if film:
+			for genre in getattr(film, 'genres', []):
+				genre_counter[genre.name] = genre_counter.get(genre.name, 0) + 1
+	for wl in Watchlist.nodes.filter(user_id=user_id):
+		film = wl.film.single()
+		if film:
+			for genre in getattr(film, 'genres', []):
+				genre_counter[genre.name] = genre_counter.get(genre.name, 0) + 1
+	# Recommend top films/series in top genres not already in favorites/watchlist
+	top_genres = sorted(genre_counter, key=genre_counter.get, reverse=True)[:3]
+	exclude_uids = set()
+	for fav in Favorite.nodes.filter(user_id=user_id):
+		film = fav.film.single()
+		if film:
+			exclude_uids.add(film.uid)
+	for wl in Watchlist.nodes.filter(user_id=user_id):
+		film = wl.film.single()
+		if film:
+			exclude_uids.add(film.uid)
+	recommendations = []
+	for genre_name in top_genres:
+		for film in Film.nodes.filter(is_active=1):
+			if any(g.name == genre_name for g in getattr(film, 'genres', [])) and film.uid not in exclude_uids:
+				recommendations.append({'uid': film.uid, 'title': film.title, 'description': film.description, 'genre': genre_name})
+		for series in Series.nodes.filter(is_active=1):
+			if any(g.name == genre_name for g in getattr(series, 'genres', [])) and series.uid not in exclude_uids:
+				recommendations.append({'uid': series.uid, 'title': series.title, 'description': series.description, 'genre': genre_name})
+	return Response({'recommendations': recommendations[:20]})
+# User-facing endpoints for browse/search/filter
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def search_movies(request):
+	q = request.GET.get('q', '')
+	results = []
+	if q:
+		results = [
+			{'uid': f.uid, 'title': f.title, 'description': f.description}
+			for f in Film.nodes.filter(is_active=1) if q.lower() in f.title.lower()
+		]
+	else:
+		results = [
+			{'uid': f.uid, 'title': f.title, 'description': f.description}
+			for f in Film.nodes.filter(is_active=1)
+		]
+	return Response({'results': results})
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def search_series(request):
+	q = request.GET.get('q', '')
+	results = []
+	if q:
+		results = [
+			{'uid': s.uid, 'title': s.title, 'description': s.description}
+			for s in Series.nodes.filter(is_active=1) if q.lower() in s.title.lower()
+		]
+	else:
+		results = [
+			{'uid': s.uid, 'title': s.title, 'description': s.description}
+			for s in Series.nodes.filter(is_active=1)
+		]
+	return Response({'results': results})
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def search_people(request):
+	q = request.GET.get('q', '')
+	results = []
+	if q:
+		results = [
+			{'uid': p.uid, 'name': p.name, 'bio': p.bio}
+			for p in Person.nodes.filter(is_active=1) if q.lower() in p.name.lower()
+		]
+	else:
+		results = [
+			{'uid': p.uid, 'name': p.name, 'bio': p.bio}
+			for p in Person.nodes.filter(is_active=1)
+		]
+	return Response({'results': results})
+
+from lists.neomodels import MovieList
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def search_lists(request):
+	q = request.GET.get('q', '')
+	results = []
+	if q:
+		results = [
+			{'uid': l.uid, 'name': l.name, 'description': l.description}
+			for l in MovieList.nodes.filter(status='approved') if q.lower() in l.name.lower()
+		]
+	else:
+		results = [
+			{'uid': l.uid, 'name': l.name, 'description': l.description}
+			for l in MovieList.nodes.filter(status='approved')
+		]
+	return Response({'results': results})
+# User-facing endpoints for favorites and watchlist
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_favorite(request):
+	object_type = request.data.get('object_type')
+	object_uid = request.data.get('object_uid')
+	if not all([object_type, object_uid]):
+		return Response({'error': 'Missing required fields.'}, status=400)
+	user_id = str(request.user.id)
+	Model = None
+	if object_type == 'film':
+		Model = Film
+	elif object_type == 'series':
+		Model = Series
+	elif object_type == 'episode':
+		Model = Episode
+	obj = Model.nodes.get_or_none(uid=object_uid) if Model else None
+	if not obj:
+		return Response({'error': f'{object_type.title()} not found.'}, status=404)
+	from .neomodels import Favorite
+	# Remove old favorite if exists
+	for fav in Favorite.nodes.filter(user_id=user_id):
+		if fav.film.single() and fav.film.single().uid == object_uid:
+			fav.delete()
+	fav = Favorite(user_id=user_id).save()
+	fav.film.connect(obj)
+	return Response({'status': 'Added to favorites.'})
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def remove_favorite(request):
+	object_type = request.data.get('object_type')
+	object_uid = request.data.get('object_uid')
+	if not all([object_type, object_uid]):
+		return Response({'error': 'Missing required fields.'}, status=400)
+	user_id = str(request.user.id)
+	from .neomodels import Favorite
+	for fav in Favorite.nodes.filter(user_id=user_id):
+		if fav.film.single() and fav.film.single().uid == object_uid:
+			fav.delete()
+			return Response({'status': 'Removed from favorites.'})
+	return Response({'error': 'Favorite not found.'}, status=404)
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_watchlist(request):
+	object_type = request.data.get('object_type')
+	object_uid = request.data.get('object_uid')
+	if not all([object_type, object_uid]):
+		return Response({'error': 'Missing required fields.'}, status=400)
+	user_id = str(request.user.id)
+	Model = None
+	if object_type == 'film':
+		Model = Film
+	elif object_type == 'series':
+		Model = Series
+	elif object_type == 'episode':
+		Model = Episode
+	obj = Model.nodes.get_or_none(uid=object_uid) if Model else None
+	if not obj:
+		return Response({'error': f'{object_type.title()} not found.'}, status=404)
+	from .neomodels import Watchlist
+	# Remove old watchlist if exists
+	for wl in Watchlist.nodes.filter(user_id=user_id):
+		if wl.film.single() and wl.film.single().uid == object_uid:
+			wl.delete()
+	wl = Watchlist(user_id=user_id).save()
+	wl.film.connect(obj)
+	return Response({'status': 'Added to watchlist.'})
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def remove_watchlist(request):
+	object_type = request.data.get('object_type')
+	object_uid = request.data.get('object_uid')
+	if not all([object_type, object_uid]):
+		return Response({'error': 'Missing required fields.'}, status=400)
+	user_id = str(request.user.id)
+	from .neomodels import Watchlist
+	for wl in Watchlist.nodes.filter(user_id=user_id):
+		if wl.film.single() and wl.film.single().uid == object_uid:
+			wl.delete()
+			return Response({'status': 'Removed from watchlist.'})
+	return Response({'error': 'Watchlist item not found.'}, status=404)
+# User-facing endpoints for ratings and reviews
+from rest_framework.permissions import IsAuthenticated, AllowAny
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_rating(request):
+	object_type = request.data.get('object_type')
+	object_uid = request.data.get('object_uid')
+	rating = request.data.get('rating')
+	if not all([object_type, object_uid, rating]):
+		return Response({'error': 'Missing required fields.'}, status=400)
+	user_id = str(request.user.id)
+	Model = None
+	if object_type == 'film':
+		Model = Film
+	elif object_type == 'series':
+		Model = Series
+	elif object_type == 'episode':
+		Model = Episode
+	obj = Model.nodes.get_or_none(uid=object_uid) if Model else None
+	if not obj:
+		return Response({'error': f'{object_type.title()} not found.'}, status=404)
+	from .neomodels import UserRating
+	# Remove old rating if exists
+	for ur in UserRating.nodes.filter(user_id=user_id):
+		if ur.film.single() and ur.film.single().uid == object_uid:
+			ur.delete()
+	ur = UserRating(user_id=user_id, rating=float(rating)).save()
+	ur.film.connect(obj)
+	return Response({'status': 'Rating added.'})
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def add_review(request):
+	object_type = request.data.get('object_type')
+	object_uid = request.data.get('object_uid')
+	review = request.data.get('review')
+	if not all([object_type, object_uid, review]):
+		return Response({'error': 'Missing required fields.'}, status=400)
+	user_id = str(request.user.id)
+	Model = None
+	if object_type == 'film':
+		Model = Film
+	elif object_type == 'series':
+		Model = Series
+	elif object_type == 'episode':
+		Model = Episode
+	obj = Model.nodes.get_or_none(uid=object_uid) if Model else None
+	if not obj:
+		return Response({'error': f'{object_type.title()} not found.'}, status=404)
+	from .neomodels import UserReview
+	ur = UserReview(user_id=user_id, review=review, status='pending').save()
+	ur.film.connect(obj)
+	return Response({'status': 'Review submitted for approval.'})
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def get_ratings_reviews(request):
+	object_type = request.GET.get('object_type')
+	object_uid = request.GET.get('object_uid')
+	if not all([object_type, object_uid]):
+		return Response({'error': 'Missing required fields.'}, status=400)
+	Model = None
+	if object_type == 'film':
+		Model = Film
+	elif object_type == 'series':
+		Model = Series
+	elif object_type == 'episode':
+		Model = Episode
+	obj = Model.nodes.get_or_none(uid=object_uid) if Model else None
+	if not obj:
+		return Response({'error': f'{object_type.title()} not found.'}, status=404)
+	from .neomodels import UserRating, UserReview
+	ratings = [float(r.rating) for r in UserRating.nodes.filter() if r.film.single() and r.film.single().uid == object_uid]
+	reviews = [
+		{'user_id': r.user_id, 'review': r.review, 'status': r.status}
+		for r in UserReview.nodes.filter(status='approved') if r.film.single() and r.film.single().uid == object_uid
+	]
+	avg_rating = sum(ratings) / len(ratings) if ratings else None
+	return Response({'avg_rating': avg_rating, 'ratings': ratings, 'reviews': reviews})
 # Admin endpoints to toggle featured/pinned status
 @api_view(['POST'])
 @permission_classes([IsAdminUser])

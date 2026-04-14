@@ -27,9 +27,29 @@ from movies.views import FilmList, FilmDetail, GenreList, SeriesList, SeriesDeta
 from movies.views import export_films_json, import_films_json, export_films_csv, import_films_csv
 from movies.views import export_series_json, import_series_json, export_series_csv, import_series_csv
 from movies.views import export_people_json, import_people_json, export_people_csv, import_people_csv
+from movies.views import search_movies, search_series, search_people, search_lists, add_favorite, remove_favorite, add_watchlist, remove_watchlist, add_rating, add_review, get_ratings_reviews, get_recommendations
+from movies.views import user_dashboard
+from movies.views import homepage
 from snippets.neoviews import MovieListView, MovieSearchView, MovieRateView, MovieReviewView
 
 urlpatterns = [
+                path('', homepage, name='homepage'),
+            path('user/dashboard/', user_dashboard, name='user_dashboard'),
+        # User-facing browse/search/filter
+        path('user/search_movies/', search_movies, name='search_movies'),
+        path('user/search_series/', search_series, name='search_series'),
+        path('user/search_people/', search_people, name='search_people'),
+        path('user/search_lists/', search_lists, name='search_lists'),
+        path('user/recommendations/', get_recommendations, name='user_recommendations'),
+        # User-facing favorites and watchlist
+        path('user/add_favorite/', add_favorite, name='add_favorite'),
+        path('user/remove_favorite/', remove_favorite, name='remove_favorite'),
+        path('user/add_watchlist/', add_watchlist, name='add_watchlist'),
+        path('user/remove_watchlist/', remove_watchlist, name='remove_watchlist'),
+        # User-facing ratings and reviews
+        path('user/add_rating/', add_rating, name='add_rating'),
+        path('user/add_review/', add_review, name='add_review'),
+        path('user/get_ratings_reviews/', get_ratings_reviews, name='get_ratings_reviews'),
     # Admin bulk import/export
     path('admin/films/export/json/', export_films_json, name='export_films_json'),
     path('admin/films/import/json/', import_films_json, name='import_films_json'),
