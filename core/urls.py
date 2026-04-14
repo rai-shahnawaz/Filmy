@@ -29,7 +29,7 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('api/', include('auth.urls')),
+    path('api/', include('authentications.urls')),
     path('api/', include('movies.urls')),
     path('api/people/', include('people.urls')),
     path('api/', include('lists.urls')),
