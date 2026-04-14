@@ -20,8 +20,13 @@
 	<meta name="author" content="">
 	<link rel="profile" href="#">
 
+
     <!--Google Font-->
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- HTMX CDN -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 	<!-- Mobile specific meta -->
 	<meta name=viewport content="width=device-width, initial-scale=1">
 	<meta name="format-detection" content="telephone-no">
@@ -263,210 +268,35 @@
 					<a  href="{% url 'moviegrid' %}" class="grid"><i class="ion-grid active"></i></a>
 				</div>
 				<div class="flex-wrap-movielist">
-						<div class="movie-item-style-2 movie-item-style-1">
-							<img src="{% static 'images/uploads/mv1.jpg' %}" alt="">
-							<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-							<div class="mv-item-infor">
-								<h6><a href="#">oblivion</a></h6>
-								<p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
-							</div>
-						</div>					
-						<div class="movie-item-style-2 movie-item-style-1">
-							<img src="{% static 'images/uploads/mv2.jpg' %}" alt="">
-							<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-							<div class="mv-item-infor">
-								<h6><a href="#">into the wild</a></h6>
-								<p class="rate"><i class="ion-android-star"></i><span>7.8</span> /10</p>
-							</div>
-						</div>
-					
-					
-						<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item3.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">Die hard</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-					
-					
-						<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item4.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">The walk</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-							<img src="{% static 'images/uploads/mv3.jpg' %}" alt="">
-							<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-							<div class="mv-item-infor">
-								<h6><a href="#">blade runner  </a></h6>
-								<p class="rate"><i class="ion-android-star"></i><span>7.3</span> /10</p>
-							</div>
-						</div>
-						<div class="movie-item-style-2 movie-item-style-1">
-							<img src="{% static 'images/uploads/mv4.jpg' %}" alt="">
-							<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-							<div class="mv-item-infor">
-								<h6><a href="#">Mulholland pride</a></h6>
-								<p class="rate"><i class="ion-android-star"></i><span>7.2</span> /10</p>
-							</div>
-						</div>
-						<div class="movie-item-style-2 movie-item-style-1">
-							<img src="{% static 'images/uploads/mv5.jpg' %}" alt="">
-							<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-							<div class="mv-item-infor">
-								<h6><a href="#">skyfall: evil of boss</a></h6>
-								<p class="rate"><i class="ion-android-star"></i><span>7.0</span> /10</p>
-							</div>
-						</div>
-						<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item1.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">Interstellar</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item2.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">The revenant</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-it10.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">harry potter</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-						<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-it11.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">guardians galaxy</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-it12.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">the godfather</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-						<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item6.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">blue velvet</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item7.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">gravity</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item8.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">southpaw</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-it9.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">jurassic park</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item9.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">the forest</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item10.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">spectre</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item11.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">strager things</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
-	            		<div class="movie-item-style-2 movie-item-style-1">
-	            			<img src="{% static 'images/uploads/mv-item12.jpg' %}" alt="">
-	            			<div class="hvr-inner">
-	            				<a  href="{% url 'moviesingle' %}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
-	            			</div>
-	            			<div class="mv-item-infor">
-	            				<h6><a href="#">la la land</a></h6>
-	            				<p class="rate"><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	            			</div>
-	            		</div>
+                        <div id="movie-list">
+                            {% for movie in movies %}
+                            <div class="movie-item-style-2 movie-item-style-1">
+                                <img src="{{ movie.poster_url|default:static('images/uploads/mv1.jpg') }}" alt="">
+                                <div class="hvr-inner">
+                                    <a href="#"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                                </div>
+                                <div class="mv-item-infor">
+                                    <h6><a href="#">{{ movie.title }}</a></h6>
+                                    <p class="rate"><i class="ion-android-star"></i>
+                                        <span id="rating-{{ movie.uid }}">{{ movie.your_rating|default:'-' }}</span> /10
+                                    </p>
+                                    <!-- HTMX rating form -->
+                                    <form hx-post="{% url 'movie_rate' movie.uid %}" hx-target="#rating-{{ movie.uid }}" hx-swap="outerHTML" class="inline">
+                                        <input type="number" name="rating" min="1" max="10" value="{{ movie.your_rating|default:'' }}" class="border rounded w-16 px-2 py-1">
+                                        <button type="submit" class="bg-blue-500 text-white px-2 py-1 rounded">Rate</button>
+                                    </form>
+                                    <!-- HTMX review form -->
+                                    <form hx-post="{% url 'movie_review' movie.uid %}" hx-target="#review-{{ movie.uid }}" hx-swap="outerHTML" class="inline mt-2">
+                                        <input type="text" name="review" value="{{ movie.review|default:'' }}" class="border rounded px-2 py-1 w-48">
+                                        <button type="submit" class="bg-green-500 text-white px-2 py-1 rounded">Review</button>
+                                    </form>
+                                    <div id="review-{{ movie.uid }}" class="mt-1 text-sm text-gray-700">{{ movie.review }}</div>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div>No movies found.</div>
+                            {% endfor %}
+                        </div>
 				</div>		
 				<div class="topbar-filter">
 					<label>Movies per page:</label>
@@ -491,52 +321,14 @@
 				<div class="sidebar">
 					<div class="searh-form">
 						<h4 class="sb-title">Search for movie</h4>
-						<form class="form-style-1" action="#">
+						<form class="form-style-1" hx-get="{% url 'movie_search' %}" hx-target="#movie-list" hx-push-url="true">
 							<div class="row">
 								<div class="col-md-12 form-it">
 									<label>Movie name</label>
-									<input type="text" placeholder="Enter keywords">
-								</div>
-								<div class="col-md-12 form-it">
-									<label>Genres & Subgenres</label>
-									<div class="group-ip">
-										<select
-											name="skills" multiple="" class="ui fluid dropdown">
-											<option value="">Enter to filter genres</option>
-											<option value="Action1">Action 1</option>
-					                        <option value="Action2">Action 2</option>
-					                        <option value="Action3">Action 3</option>
-					                        <option value="Action4">Action 4</option>
-					                        <option value="Action5">Action 5</option>
-										</select>
-									</div>	
-								</div>
-								<div class="col-md-12 form-it">
-									<label>Rating Range</label>
-									<select>
-									  <option value="range">-- Select the rating range below --</option>
-									  <option value="saab">-- Select the rating range below --</option>
-									</select>
-								</div>
-								<div class="col-md-12 form-it">
-									<label>Release Year</label>
-									<div class="row">
-										<div class="col-md-6">
-											<select>
-											  <option value="range">From</option>
-											  <option value="number">10</option>
-											</select>
-										</div>
-										<div class="col-md-6">
-											<select>
-											  <option value="range">To</option>
-											  <option value="number">20</option>
-											</select>
-										</div>
-									</div>
+									<input type="text" name="q" placeholder="Enter keywords" value="{{ query|default:'' }}">
 								</div>
 								<div class="col-md-12 ">
-									<input class="submit" type="submit" value="submit">
+									<input class="submit" type="submit" value="Search">
 								</div>
 							</div>
 						</form>

@@ -1,25 +1,19 @@
 from rest_framework import serializers
-from .models import *
-from django.contrib.auth.models import User
-from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
+from snippets.models import UserProfile
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'email')
 
-
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
             required=True,
             validators=[UniqueValidator(queryset=User.objects.all())]
             )
-
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
 
@@ -45,7 +39,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         )
         user.set_password(validated_data['password'])
         user.save()
-        
         user_profile = UserProfile.objects.create(
             user=user,
             email=validated_data['email'],
@@ -53,8 +46,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             last_name=validated_data['last_name'],
         )
         return user
-    
-    
+
 class ChangePasswordSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
@@ -79,12 +71,10 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         if user.pk != instance.pk:
             raise serializers.ValidationError({"authorize": "You dont have permission for this user."})
-
         instance.set_password(validated_data['password'])
         instance.save()
         return instance
-    
-    
+
 class UpdateUserSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
 
@@ -112,46 +102,14 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         user = self.context['request'].user
         if user.pk != instance.pk:
             raise serializers.ValidationError({"authorize": "You dont have permission for this user."})
-        
         instance.first_name = validated_data['first_name']
         instance.last_name = validated_data['last_name']
         instance.email = validated_data['email']
         instance.username = validated_data['username']
         instance.save()
-        
         user_profile = UserProfile.objects.get(user=instance)
         user_profile.first_name = validated_data['first_name']
         user_profile.last_name = validated_data['last_name']
         user_profile.email = validated_data['email']
         user_profile.save()
-        
         return instance
-        
-    
-class FilmSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Film
-        fields = ('__all__')
-        
-        
-class BadgeSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Badge
-        fields = ('__all__')
-        
-        
-class GenreSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Genre
-        fields = ('__all__')
-        
-        
-class SubGenreSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = SubGenre
-        fields = ('__all__')
-        

@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'snippets',
+    # 'snippets',
+    'users',
+    'movies',
+    'lists',
     # 'knox',
     'rest_framework_simplejwt.token_blacklist',
     'drf_spectacular',
@@ -78,8 +81,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -87,6 +88,11 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Neo4j/Neomodel configuration
+NEOMODEL_NEO4J_BOLT_URL = os.environ.get('NEOMODEL_NEO4J_BOLT_URL', 'bolt://neo4j:password@localhost:7687')
+NEOMODEL_ENCRYPTED_CONNECTION = False
+NEOMODEL_SIGNALS = True
 
 
 # Password validation
@@ -201,5 +207,4 @@ SPECTACULAR_SETTINGS = {
         'persistAuthorization': True,
         'tryItOutEnabled': True,
     },
-}
 }

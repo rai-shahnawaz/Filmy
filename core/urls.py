@@ -28,7 +28,9 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('snippets.urls')),
+    # path('api/', include('snippets.urls')),
+    path('api/', include('movies.urls')),
+    path('api/', include('lists.urls')),
     # drf-spectacular schema and docs
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/docs/', SpectacularSwaggerView.as_view(
