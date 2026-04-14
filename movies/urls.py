@@ -5,13 +5,14 @@ from movies.views import (
     export_films_json, import_films_json, export_films_csv, import_films_csv,
     export_series_json, import_series_json, export_series_csv, import_series_csv,
     search_movies, search_series, search_lists, add_favorite, remove_favorite,
-    add_watchlist, remove_watchlist, add_rating, add_review, get_ratings_reviews,
-    get_recommendations, user_dashboard, homepage, toggle_featured_status,
+    add_watchlist, remove_watchlist, user_dashboard, homepage, toggle_featured_status,
     add_admin_note, list_admin_notes, admin_dashboard_analytics,
     assign_person_to_object, remove_person_from_object,
     soft_delete_film, restore_film, soft_delete_series, restore_series,
     soft_delete_episode, restore_episode
 )
+from recommendations.views import get_recommendations
+from reviews.views import add_rating, add_review, get_ratings_reviews
 
 urlpatterns = [
     path('', homepage, name='homepage'),

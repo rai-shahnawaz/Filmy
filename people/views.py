@@ -13,8 +13,10 @@ class PersonList(generics.ListCreateAPIView):
 		elif self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
 			return [IsAdminUser()]
 		return [IsAuthenticated()]
-	queryset = Person.nodes.all()
 	serializer_class = PersonSerializer
+
+	def get_queryset(self):
+		return Person.nodes.all()
 
 class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
 	def get_permissions(self):

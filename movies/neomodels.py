@@ -1,45 +1,20 @@
-from neomodel import StructuredNode, StringProperty, IntegerProperty, RelationshipTo, RelationshipFrom, UniqueIdProperty, DateProperty, FloatProperty
-
-class Person(StructuredNode):
-    uid = UniqueIdProperty()
-    name = StringProperty(unique_index=True, required=True)
-    bio = StringProperty()
-    birth_date = DateProperty()
-    is_active = IntegerProperty(default=1)
-    is_featured = IntegerProperty(default=0)
-    # Relationships to films
-    acted_in_films = RelationshipTo('Film', 'ACTED_IN')
-    directed_films = RelationshipTo('Film', 'DIRECTED')
-    produced_films = RelationshipTo('Film', 'PRODUCED')
-    created_films = RelationshipTo('Film', 'CREATED')
-    crew_films = RelationshipTo('Film', 'CREW')
-    # Relationships to series
-    acted_in_series = RelationshipTo('Series', 'ACTED_IN')
-    directed_series = RelationshipTo('Series', 'DIRECTED')
-    produced_series = RelationshipTo('Series', 'PRODUCED')
-    created_series = RelationshipTo('Series', 'CREATED')
-    crew_series = RelationshipTo('Series', 'CREW')
-    # Relationships to episodes
-    acted_in_episodes = RelationshipTo('Episode', 'ACTED_IN')
-    directed_episodes = RelationshipTo('Episode', 'DIRECTED')
-    produced_episodes = RelationshipTo('Episode', 'PRODUCED')
-    created_episodes = RelationshipTo('Episode', 'CREATED')
-    crew_episodes = RelationshipTo('Episode', 'CREW')
+from neomodel import DateProperty, DateTimeProperty, FloatProperty, IntegerProperty, RelationshipFrom, RelationshipTo, StringProperty, StructuredNode, UniqueIdProperty
+from people.models import Person
 
 class Film(StructuredNode):
     uid = UniqueIdProperty()
     title = StringProperty(unique_index=True, required=True)
     description = StringProperty()
     release_year = IntegerProperty()
-    type = StringProperty(choices={"movie", "series"}, default="movie")
+    type = StringProperty(choices={"movie": "movie", "series": "series"}, default="movie")
     is_active = IntegerProperty(default=1)
     is_featured = IntegerProperty(default=0)
     genres = RelationshipTo('Genre', 'IN_GENRE')
-    actors = RelationshipFrom('Person', 'ACTED_IN')
-    directors = RelationshipFrom('Person', 'DIRECTED')
-    producers = RelationshipFrom('Person', 'PRODUCED')
-    creators = RelationshipFrom('Person', 'CREATED')
-    crew = RelationshipFrom('Person', 'CREW')
+    actors = RelationshipFrom('people.models.Person', 'ACTED_IN')
+    directors = RelationshipFrom('people.models.Person', 'DIRECTED')
+    producers = RelationshipFrom('people.models.Person', 'PRODUCED')
+    creators = RelationshipFrom('people.models.Person', 'CREATED')
+    crew = RelationshipFrom('people.models.Person', 'CREW')
     ratings = RelationshipFrom('UserRating', 'RATED')
     reviews = RelationshipFrom('UserReview', 'REVIEWED')
 
@@ -53,11 +28,11 @@ class Series(StructuredNode):
     is_active = IntegerProperty(default=1)
     is_featured = IntegerProperty(default=0)
     genres = RelationshipTo('Genre', 'IN_GENRE')
-    actors = RelationshipFrom('Person', 'ACTED_IN')
-    directors = RelationshipFrom('Person', 'DIRECTED')
-    producers = RelationshipFrom('Person', 'PRODUCED')
-    creators = RelationshipFrom('Person', 'CREATED')
-    crew = RelationshipFrom('Person', 'CREW')
+    actors = RelationshipFrom('people.models.Person', 'ACTED_IN')
+    directors = RelationshipFrom('people.models.Person', 'DIRECTED')
+    producers = RelationshipFrom('people.models.Person', 'PRODUCED')
+    creators = RelationshipFrom('people.models.Person', 'CREATED')
+    crew = RelationshipFrom('people.models.Person', 'CREW')
     seasons = RelationshipTo('Season', 'HAS_SEASON')
     ratings = RelationshipFrom('UserRating', 'RATED')
     reviews = RelationshipFrom('UserReview', 'REVIEWED')
@@ -77,11 +52,11 @@ class Episode(StructuredNode):
     description = StringProperty()
     is_active = IntegerProperty(default=1)
     is_featured = IntegerProperty(default=0)
-    actors = RelationshipFrom('Person', 'ACTED_IN')
-    directors = RelationshipFrom('Person', 'DIRECTED')
-    producers = RelationshipFrom('Person', 'PRODUCED')
-    creators = RelationshipFrom('Person', 'CREATED')
-    crew = RelationshipFrom('Person', 'CREW')
+    actors = RelationshipFrom('people.models.Person', 'ACTED_IN')
+    directors = RelationshipFrom('people.models.Person', 'DIRECTED')
+    producers = RelationshipFrom('people.models.Person', 'PRODUCED')
+    creators = RelationshipFrom('people.models.Person', 'CREATED')
+    crew = RelationshipFrom('people.models.Person', 'CREW')
 
 class Genre(StructuredNode):
     uid = UniqueIdProperty()
@@ -92,21 +67,28 @@ class UserRating(StructuredNode):
     uid = UniqueIdProperty()
     user_id = StringProperty(required=True)
     rating = FloatProperty(required=True)
+    created_at = DateTimeProperty(default_now=True)
     film = RelationshipTo('Film', 'RATED')
 
 class UserReview(StructuredNode):
     uid = UniqueIdProperty()
     user_id = StringProperty(required=True)
     review = StringProperty(required=True)
+    created_at = DateTimeProperty(default_now=True)
     film = RelationshipTo('Film', 'REVIEWED')
-    status = StringProperty(default='pending', choices={'pending', 'approved', 'rejected'})
+    status = StringProperty(
+        default='pending',
+        choices={"pending": "pending", "approved": "approved", "rejected": "rejected"},
+    )
 
 class Favorite(StructuredNode):
     uid = UniqueIdProperty()
     user_id = StringProperty(required=True)
+    created_at = DateTimeProperty(default_now=True)
     film = RelationshipTo('Film', 'FAVORITED')
 
 class Watchlist(StructuredNode):
     uid = UniqueIdProperty()
     user_id = StringProperty(required=True)
+    created_at = DateTimeProperty(default_now=True)
     film = RelationshipTo('Film', 'WATCHLISTED')
