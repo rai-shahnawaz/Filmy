@@ -31,6 +31,7 @@ urlpatterns = [
 
     path('api/', include('auth.urls')),
     path('api/', include('movies.urls')),
+    path('api/people/', include('people.urls')),
     path('api/', include('lists.urls')),
     # drf-spectacular schema and docs
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

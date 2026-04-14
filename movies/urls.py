@@ -23,48 +23,40 @@
     path('admin/episodes/<str:uid>/soft_delete/', soft_delete_episode, name='soft_delete_episode'),
     path('admin/episodes/<str:uid>/restore/', restore_episode, name='restore_episode'),
 from django.urls import path
-from movies.views import FilmList, FilmDetail, GenreList, SeriesList, SeriesDetail, SeasonList, SeasonDetail, EpisodeList, EpisodeDetail, PersonList, PersonDetail, BadgeList, AdminLoginView, AdminDashboardView
+from movies.views import FilmList, FilmDetail, GenreList, SeriesList, SeriesDetail, SeasonList, SeasonDetail, EpisodeList, EpisodeDetail, BadgeList, AdminLoginView, AdminDashboardView
 from movies.views import export_films_json, import_films_json, export_films_csv, import_films_csv
 from movies.views import export_series_json, import_series_json, export_series_csv, import_series_csv
-from movies.views import export_people_json, import_people_json, export_people_csv, import_people_csv
-from movies.views import search_movies, search_series, search_people, search_lists, add_favorite, remove_favorite, add_watchlist, remove_watchlist, add_rating, add_review, get_ratings_reviews, get_recommendations
+from movies.views import search_movies, search_series, search_lists, add_favorite, remove_favorite, add_watchlist, remove_watchlist, add_rating, add_review, get_ratings_reviews, get_recommendations
 from movies.views import user_dashboard
 from movies.views import homepage
 
 
 urlpatterns = [
-                path('', homepage, name='homepage'),
-            path('user/dashboard/', user_dashboard, name='user_dashboard'),
-        # User-facing browse/search/filter
-        path('user/search_movies/', search_movies, name='search_movies'),
-        path('user/search_series/', search_series, name='search_series'),
-        path('user/search_people/', search_people, name='search_people'),
-        path('user/search_lists/', search_lists, name='search_lists'),
-        path('user/recommendations/', get_recommendations, name='user_recommendations'),
-        # User-facing favorites and watchlist
-        path('user/add_favorite/', add_favorite, name='add_favorite'),
-        path('user/remove_favorite/', remove_favorite, name='remove_favorite'),
-        path('user/add_watchlist/', add_watchlist, name='add_watchlist'),
-        path('user/remove_watchlist/', remove_watchlist, name='remove_watchlist'),
-        # User-facing ratings and reviews
-        path('user/add_rating/', add_rating, name='add_rating'),
-        path('user/add_review/', add_review, name='add_review'),
-        path('user/get_ratings_reviews/', get_ratings_reviews, name='get_ratings_reviews'),
+    path('', homepage, name='homepage'),
+    path('user/dashboard/', user_dashboard, name='user_dashboard'),
+    # User-facing browse/search/filter
+    path('user/search_movies/', search_movies, name='search_movies'),
+    path('user/search_series/', search_series, name='search_series'),
+    path('user/search_lists/', search_lists, name='search_lists'),
+    path('user/recommendations/', get_recommendations, name='user_recommendations'),
+    # User-facing favorites and watchlist
+    path('user/add_favorite/', add_favorite, name='add_favorite'),
+    path('user/remove_favorite/', remove_favorite, name='remove_favorite'),
+    path('user/add_watchlist/', add_watchlist, name='add_watchlist'),
+    path('user/remove_watchlist/', remove_watchlist, name='remove_watchlist'),
+    # User-facing ratings and reviews
+    path('user/add_rating/', add_rating, name='add_rating'),
+    path('user/add_review/', add_review, name='add_review'),
+    path('user/get_ratings_reviews/', get_ratings_reviews, name='get_ratings_reviews'),
     # Admin bulk import/export
     path('admin/films/export/json/', export_films_json, name='export_films_json'),
     path('admin/films/import/json/', import_films_json, name='import_films_json'),
     path('admin/films/export/csv/', export_films_csv, name='export_films_csv'),
     path('admin/films/import/csv/', import_films_csv, name='import_films_csv'),
-
     path('admin/series/export/json/', export_series_json, name='export_series_json'),
     path('admin/series/import/json/', import_series_json, name='import_series_json'),
     path('admin/series/export/csv/', export_series_csv, name='export_series_csv'),
     path('admin/series/import/csv/', import_series_csv, name='import_series_csv'),
-
-    path('admin/people/export/json/', export_people_json, name='export_people_json'),
-    path('admin/people/import/json/', import_people_json, name='import_people_json'),
-    path('admin/people/export/csv/', export_people_csv, name='export_people_csv'),
-    path('admin/people/import/csv/', import_people_csv, name='import_people_csv'),
     path('admin/login/', AdminLoginView.as_view(), name='admin_login'),
     path('admin/dashboard/', AdminDashboardView.as_view(), name='admin_dashboard'),
     path('films/', FilmList.as_view()),
@@ -76,10 +68,7 @@ urlpatterns = [
     path('seasons/<str:pk>/', SeasonDetail.as_view()),
     path('episodes/', EpisodeList.as_view()),
     path('episodes/<str:pk>/', EpisodeDetail.as_view()),
-    path('people/', PersonList.as_view()),
-    path('people/<str:pk>/', PersonDetail.as_view()),
     path('badges/', BadgeList.as_view()),
-
     # ...existing code for MovieListView, MovieSearchView, etc.
     path('movies/', MovieListView.as_view(), name='movie_list'),
     path('movies/search/', MovieSearchView.as_view(), name='movie_search'),

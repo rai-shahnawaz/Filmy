@@ -80,7 +80,11 @@ from .neomodels import MovieList
 from .serializers import MovieListSerializer
 
 class MovieListListCreateView(generics.ListCreateAPIView):
-	permission_classes = (IsAuthenticated,)
+	def get_permissions(self):
+		from rest_framework.permissions import AllowAny, IsAuthenticated
+		if self.request.method == 'GET':
+			return [AllowAny()]
+		return [IsAuthenticated()]
 	serializer_class = MovieListSerializer
 
 	def get_queryset(self):
@@ -98,7 +102,11 @@ class MovieListListCreateView(generics.ListCreateAPIView):
 		return movie_list
 
 class MovieListDetailView(generics.RetrieveUpdateDestroyAPIView):
-	permission_classes = (IsAuthenticated,)
+	def get_permissions(self):
+		from rest_framework.permissions import AllowAny, IsAuthenticated
+		if self.request.method == 'GET':
+			return [AllowAny()]
+		return [IsAuthenticated()]
 	serializer_class = MovieListSerializer
 
 	def get_queryset(self):

@@ -6,18 +6,22 @@ from .models import Person
 from .serializers import PersonSerializer
 
 class PersonList(generics.ListCreateAPIView):
-	permission_classes = (IsAuthenticated,)
 	def get_permissions(self):
-		if self.request.method in ['PUT', 'PATCH', 'DELETE']:
+		from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+		if self.request.method == 'GET':
+			return [AllowAny()]
+		elif self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
 			return [IsAdminUser()]
 		return [IsAuthenticated()]
 	queryset = Person.nodes.all()
 	serializer_class = PersonSerializer
 
 class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
-	permission_classes = (IsAuthenticated,)
 	def get_permissions(self):
-		if self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
+		from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
+		if self.request.method == 'GET':
+			return [AllowAny()]
+		elif self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
 			return [IsAdminUser()]
 		return [IsAuthenticated()]
 	serializer_class = PersonSerializer
