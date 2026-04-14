@@ -1,1 +1,3 @@
-# ...existing code from auth/models.py...
+from django.db import models
+
+# Create your models here.

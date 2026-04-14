@@ -1,1 +1,3 @@
-# ...existing code from auth/admin.py...
+from django.contrib import admin
+
+# Register your models here.

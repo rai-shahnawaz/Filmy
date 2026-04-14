@@ -1,35 +1,17 @@
-                        # Admin toggle featured/pinned status
-                        path('admin/toggle_featured/', toggle_featured_status, name='toggle_featured_status'),
-                    # Admin notes/comments
-                    path('admin/notes/add/', add_admin_note, name='add_admin_note'),
-                    path('admin/notes/list/', list_admin_notes, name='list_admin_notes'),
-                # Admin dashboard analytics
-                path('admin/dashboard/analytics/', admin_dashboard_analytics, name='admin_dashboard_analytics'),
-            # Admin approve/reject user content
-            path('admin/reviews/<str:uid>/approve/', approve_review, name='approve_review'),
-            path('admin/reviews/<str:uid>/reject/', reject_review, name='reject_review'),
-            path('admin/lists/<str:uid>/approve/', approve_list, name='approve_list'),
-            path('admin/lists/<str:uid>/reject/', reject_list, name='reject_list'),
-        # Admin relationship management
-        path('admin/assign_person/', assign_person_to_object, name='assign_person_to_object'),
-        path('admin/remove_person/', remove_person_from_object, name='remove_person_from_object'),
-    # Admin soft delete/restore
-    path('admin/films/<str:uid>/soft_delete/', soft_delete_film, name='soft_delete_film'),
-    path('admin/films/<str:uid>/restore/', restore_film, name='restore_film'),
-    path('admin/series/<str:uid>/soft_delete/', soft_delete_series, name='soft_delete_series'),
-    path('admin/series/<str:uid>/restore/', restore_series, name='restore_series'),
-    path('admin/people/<str:uid>/soft_delete/', soft_delete_person, name='soft_delete_person'),
-    path('admin/people/<str:uid>/restore/', restore_person, name='restore_person'),
-    path('admin/episodes/<str:uid>/soft_delete/', soft_delete_episode, name='soft_delete_episode'),
-    path('admin/episodes/<str:uid>/restore/', restore_episode, name='restore_episode'),
 from django.urls import path
-from movies.views import FilmList, FilmDetail, GenreList, SeriesList, SeriesDetail, SeasonList, SeasonDetail, EpisodeList, EpisodeDetail, BadgeList, AdminLoginView, AdminDashboardView
-from movies.views import export_films_json, import_films_json, export_films_csv, import_films_csv
-from movies.views import export_series_json, import_series_json, export_series_csv, import_series_csv
-from movies.views import search_movies, search_series, search_lists, add_favorite, remove_favorite, add_watchlist, remove_watchlist, add_rating, add_review, get_ratings_reviews, get_recommendations
-from movies.views import user_dashboard
-from movies.views import homepage
-
+from movies.views import (
+    FilmList, FilmDetail, GenreList, SeriesList, SeriesDetail, SeasonList, SeasonDetail,
+    EpisodeList, EpisodeDetail, BadgeList, AdminLoginView, AdminDashboardView,
+    export_films_json, import_films_json, export_films_csv, import_films_csv,
+    export_series_json, import_series_json, export_series_csv, import_series_csv,
+    search_movies, search_series, search_lists, add_favorite, remove_favorite,
+    add_watchlist, remove_watchlist, add_rating, add_review, get_ratings_reviews,
+    get_recommendations, user_dashboard, homepage, toggle_featured_status,
+    add_admin_note, list_admin_notes, admin_dashboard_analytics,
+    assign_person_to_object, remove_person_from_object,
+    soft_delete_film, restore_film, soft_delete_series, restore_series,
+    soft_delete_episode, restore_episode
+)
 
 urlpatterns = [
     path('', homepage, name='homepage'),
@@ -69,9 +51,21 @@ urlpatterns = [
     path('episodes/', EpisodeList.as_view()),
     path('episodes/<str:pk>/', EpisodeDetail.as_view()),
     path('badges/', BadgeList.as_view()),
-    # ...existing code for MovieListView, MovieSearchView, etc.
-    path('movies/', MovieListView.as_view(), name='movie_list'),
-    path('movies/search/', MovieSearchView.as_view(), name='movie_search'),
-    path('movies/<str:uid>/rate/', MovieRateView.as_view(), name='movie_rate'),
-    path('movies/<str:uid>/review/', MovieReviewView.as_view(), name='movie_review'),
+    # Admin toggle featured/pinned status
+    path('admin/toggle_featured/', toggle_featured_status, name='toggle_featured_status'),
+    # Admin notes/comments
+    path('admin/notes/add/', add_admin_note, name='add_admin_note'),
+    path('admin/notes/list/', list_admin_notes, name='list_admin_notes'),
+    # Admin dashboard analytics
+    path('admin/dashboard/analytics/', admin_dashboard_analytics, name='admin_dashboard_analytics'),
+    # Admin relationship management
+    path('admin/assign_person/', assign_person_to_object, name='assign_person_to_object'),
+    path('admin/remove_person/', remove_person_from_object, name='remove_person_from_object'),
+    # Admin soft delete/restore
+    path('admin/films/<str:uid>/soft_delete/', soft_delete_film, name='soft_delete_film'),
+    path('admin/films/<str:uid>/restore/', restore_film, name='restore_film'),
+    path('admin/series/<str:uid>/soft_delete/', soft_delete_series, name='soft_delete_series'),
+    path('admin/series/<str:uid>/restore/', restore_series, name='restore_series'),
+    path('admin/episodes/<str:uid>/soft_delete/', soft_delete_episode, name='soft_delete_episode'),
+    path('admin/episodes/<str:uid>/restore/', restore_episode, name='restore_episode'),
 ]
