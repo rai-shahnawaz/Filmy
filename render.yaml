@@ -22,4 +22,4 @@ services:
       - key: NEOMODEL_ENCRYPTED_CONNECTION
         sync: false
     staticPublishPath: staticfiles  # Directory where collectstatic outputs files
-    healthCheckPath: /
+    healthCheckPath: /api/
