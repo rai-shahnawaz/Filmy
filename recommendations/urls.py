@@ -1,0 +1,1 @@
+# Recommendations app urls placeholder

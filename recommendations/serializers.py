@@ -1,0 +1,1 @@
+# Recommendations app serializers placeholder

@@ -142,22 +142,6 @@ def search_series(request):
 		]
 	return Response({'results': results})
 
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def search_people(request):
-	q = request.GET.get('q', '')
-	results = []
-	if q:
-		results = [
-			{'uid': p.uid, 'name': p.name, 'bio': p.bio}
-			for p in Person.nodes.filter(is_active=1) if q.lower() in p.name.lower()
-		]
-	else:
-		results = [
-			{'uid': p.uid, 'name': p.name, 'bio': p.bio}
-			for p in Person.nodes.filter(is_active=1)
-		]
-	return Response({'results': results})
 
 from lists.neomodels import MovieList
 @api_view(['GET'])
@@ -595,27 +579,7 @@ def restore_series(request, uid):
 	log_audit(request, 'restore', series, 'Series')
 	return Response({'status': 'Series restored.'})
 
-@api_view(['POST'])
-@permission_classes([IsAdminUser])
-def soft_delete_person(request, uid):
-	person = Person.nodes.get_or_none(uid=uid)
-	if not person:
-		return Response({'error': 'Person not found.'}, status=404)
-	person.is_active = 0
-	person.save()
-	log_audit(request, 'delete', person, 'Person')
-	return Response({'status': 'Person soft deleted.'})
 
-@api_view(['POST'])
-@permission_classes([IsAdminUser])
-def restore_person(request, uid):
-	person = Person.nodes.get_or_none(uid=uid)
-	if not person:
-		return Response({'error': 'Person not found.'}, status=404)
-	person.is_active = 1
-	person.save()
-	log_audit(request, 'restore', person, 'Person')
-	return Response({'status': 'Person restored.'})
 
 @api_view(['POST'])
 @permission_classes([IsAdminUser])
@@ -736,50 +700,9 @@ def import_series_csv(request):
 		Series(**row).save()
 	return Response({'status': 'Import complete.'})
 
-@api_view(['GET'])
-@permission_classes([IsAdminUser])
-def export_people_json(request):
-	people = Person.nodes.filter(is_active=1)
-	data = [p.__properties__ for p in people]
-	return HttpResponse(json.dumps(data, default=str), content_type='application/json')
 
-@api_view(['POST'])
-@permission_classes([IsAdminUser])
-@parser_classes([MultiPartParser, FormParser])
-def import_people_json(request):
-	file = request.FILES.get('file')
-	if not file:
-		return Response({'error': 'No file uploaded.'}, status=400)
-	data = json.load(file)
-	for entry in data:
-		Person(**entry).save()
-	return Response({'status': 'Import complete.'})
 
-@api_view(['GET'])
-@permission_classes([IsAdminUser])
-def export_people_csv(request):
-	people = Person.nodes.filter(is_active=1)
-	if not people:
-		return HttpResponse('', content_type='text/csv')
-	output = io.StringIO()
-	writer = csv.DictWriter(output, fieldnames=people[0].__properties__.keys())
-	writer.writeheader()
-	for p in people:
-		writer.writerow(p.__properties__)
-	return HttpResponse(output.getvalue(), content_type='text/csv')
 
-@api_view(['POST'])
-@permission_classes([IsAdminUser])
-@parser_classes([MultiPartParser, FormParser])
-def import_people_csv(request):
-	file = request.FILES.get('file')
-	if not file:
-		return Response({'error': 'No file uploaded.'}, status=400)
-	decoded = file.read().decode('utf-8')
-	reader = csv.DictReader(io.StringIO(decoded))
-	for row in reader:
-		Person(**row).save()
-	return Response({'status': 'Import complete.'})
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
@@ -893,24 +816,7 @@ class EpisodeDetail(generics.RetrieveUpdateDestroyAPIView):
 	def get_queryset(self):
 		return Episode.nodes.all()
 
-class PersonList(generics.ListCreateAPIView):
-	permission_classes = (IsAuthenticated,)
-	def get_permissions(self):
-		if self.request.method in ['PUT', 'PATCH', 'DELETE']:
-			return [IsAdminUser()]
-		return [IsAuthenticated()]
-	queryset = Person.nodes.all()
-	serializer_class = PersonSerializer
 
-class PersonDetail(generics.RetrieveUpdateDestroyAPIView):
-	permission_classes = (IsAuthenticated,)
-	def get_permissions(self):
-		if self.request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
-			return [IsAdminUser()]
-		return [IsAuthenticated()]
-	serializer_class = PersonSerializer
-	def get_queryset(self):
-		return Person.nodes.all()
 
 class FilmDetail(generics.RetrieveUpdateDestroyAPIView):
 	permission_classes = (IsAuthenticated,)
