@@ -209,13 +209,18 @@ SIMPLE_JWT = {
 
 # drf-spectacular settings
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'My Project API',
+    'TITLE': 'Filmy API',
     'DESCRIPTION': (
-        'REST API reference for all services.\n\n'
+        'REST API reference for Filmy services.\n\n'
         '### Quick Start\n'
         '1. Use the login endpoint to get your access token.\n'
         '2. Click **Authorize** and enter `Bearer <access_token>`.\n'
-        '3. Browse endpoints by tag.\n\n'
+        '3. Browse endpoints by tag or use the live search bar in Swagger UI.\n\n'
+        '### Modules\n'
+        '- Auth and profile flows\n'
+        '- Movies, series, seasons, and episodes\n'
+        '- People and cast relationships\n'
+        '- Lists, reviews, and recommendations\n\n'
         '### Response Format\n'
         'All error responses follow `{ "detail": "..." }` format.\n'
     ),

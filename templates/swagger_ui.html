@@ -10,111 +10,157 @@
     <style>
       html { box-sizing: border-box; overflow-y: scroll; }
       *, *:after, *:before { box-sizing: inherit; }
-      body { background: #fafafa; margin: 0; }
-    #endpoint-search-container {
-            background: #f7f7f7;
-            border-bottom: 1px solid #d9d9d9;
-            padding: 12px 0;
-            width: 100%;
-          }
-          #endpoint-search-inner {
-            max-width: 1460px;
-            margin: 0 auto;
-            padding: 0 20px;
-          }
-          #endpoint-name-search {
-            display: block;
-            width: 100%;
-            font-family: sans-serif;
-            font-size: 14px;
-            padding: 10px 14px;
-            border: 2px solid #d0d5dd;
-            border-radius: 6px;
-            outline: none;
-            background: #ffffff;
-            color: #1a1a1a;
-            transition: border-color 0.15s ease, box-shadow 0.15s ease;
-          }
-          #endpoint-name-search:focus {
-            border-color: #4a90e2;
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
-            outline: none;
-          }
-          #endpoint-name-search::placeholder { color: #667085; }
-        </style>
-        {% endblock %}
-      </head>
-      <body>
-        {% block body %}
-        <div id="swagger-ui"></div>
-        <script src="{{ swagger_ui_bundle }}"></script>
-        <script src="{{ swagger_ui_standalone }}"></script>
-        {% if script_url %}
-        <script src="{{ script_url }}"></script>
-        {% else %}
-        <script>{% include template_name_js %}</script>
-        {% endif %}
-        <script>
-        (function () {
-          var term = "";
-          function normalize(value) {
-            return (value || "").toLowerCase().trim();
-          }
-          function applySearchFilter() {
-            var query = normalize(term);
-            document.querySelectorAll('.swagger-ui .opblock').forEach(function (opblock) {
-              var haystack = normalize([
-                '.opblock-summary-path',
-                '.opblock-summary-operation-id',
-                '.opblock-summary-description',
-                '.opblock-summary-method'
-              ].map(function (sel) {
-                var el = opblock.querySelector(sel);
-                return el ? el.textContent : '';
-              }).join(' '));
-              opblock.style.display = (!query || haystack.indexOf(query) !== -1) ? '' : 'none';
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top left, rgba(236, 253, 245, 0.92), transparent 28%),
+          linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+      }
+      #endpoint-search-container {
+        width: 100%;
+        padding: 18px 0;
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      }
+      #endpoint-search-inner {
+        max-width: 1460px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      #endpoint-search-label {
+        display: block;
+        margin-bottom: 10px;
+        color: #0f172a;
+        font: 600 0.85rem/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        letter-spacing: 0.02em;
+      }
+      #endpoint-name-search {
+        display: block;
+        width: 100%;
+        padding: 12px 14px;
+        border: 2px solid #d0d5dd;
+        border-radius: 10px;
+        outline: none;
+        background: #ffffff;
+        color: #101828;
+        font: 500 0.95rem/1.4 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+      }
+      #endpoint-name-search:focus {
+        border-color: #0f766e;
+        box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.14);
+        transform: translateY(-1px);
+      }
+      #endpoint-name-search::placeholder {
+        color: #667085;
+      }
+    </style>
+    {% endblock %}
+  </head>
+  <body>
+    {% block body %}
+    <div id="swagger-ui"></div>
+    <script src="{{ swagger_ui_bundle }}"></script>
+    <script src="{{ swagger_ui_standalone }}"></script>
+    {% if script_url %}
+    <script src="{{ script_url }}"></script>
+    {% else %}
+    <script>{% include template_name_js %}</script>
+    {% endif %}
+    <script>
+      (function () {
+        var term = "";
+
+        function normalize(value) {
+          return (value || "").toLowerCase().trim();
+        }
+
+        function applySearchFilter() {
+          var query = normalize(term);
+
+          document.querySelectorAll(".swagger-ui .opblock").forEach(function (opblock) {
+            var haystack = normalize([
+              ".opblock-summary-path",
+              ".opblock-summary-operation-id",
+              ".opblock-summary-description",
+              ".opblock-summary-method"
+            ].map(function (selector) {
+              var element = opblock.querySelector(selector);
+              return element ? element.textContent : "";
+            }).join(" "));
+
+            opblock.style.display = !query || haystack.indexOf(query) !== -1 ? "" : "none";
+          });
+
+          document.querySelectorAll(".swagger-ui .opblock-tag-section").forEach(function (section) {
+            var operations = section.querySelectorAll(".opblock");
+
+            if (operations.length === 0) {
+              section.style.display = "";
+              return;
+            }
+
+            var anyVisible = Array.from(operations).some(function (operation) {
+              return operation.style.display !== "none";
             });
-            document.querySelectorAll('.swagger-ui .opblock-tag-section').forEach(function (section) {
-              var allOps = section.querySelectorAll('.opblock');
-              if (allOps.length === 0) { section.style.display = ''; return; }
-              var anyVisible = Array.from(allOps).some(function (n) {
-                return n.style.display !== 'none';
-              });
-              section.style.display = anyVisible ? '' : 'none';
-            });
+
+            section.style.display = anyVisible ? "" : "none";
+          });
+        }
+
+        function ensureSearchBox() {
+          if (document.getElementById("endpoint-name-search")) {
+            return;
           }
-          function ensureSearchBox() {
-            if (document.getElementById('endpoint-name-search')) return;
-            var schemeContainer = document.querySelector('.swagger-ui .scheme-container');
-            if (!schemeContainer) return;
-            var wrap = document.createElement('div');
-            wrap.id = 'endpoint-search-container';
-            var inner = document.createElement('div');
-            inner.id = 'endpoint-search-inner';
-            var input = document.createElement('input');
-            input.id = 'endpoint-name-search';
-            input.type = 'search';
-            input.placeholder = 'Search by endpoint name, path, or summary...';
-            input.addEventListener('input', function (e) {
-              term = e.target.value || '';
-              applySearchFilter();
-            });
-            inner.appendChild(input);
-            wrap.appendChild(inner);
-            schemeContainer.parentNode.insertBefore(wrap, schemeContainer.nextSibling);
-            applySearchFilter();
+
+          var schemeContainer = document.querySelector(".swagger-ui .scheme-container");
+          if (!schemeContainer) {
+            return;
           }
-          var observer = new MutationObserver(function () {
-            ensureSearchBox();
+
+          var wrap = document.createElement("div");
+          wrap.id = "endpoint-search-container";
+
+          var inner = document.createElement("div");
+          inner.id = "endpoint-search-inner";
+
+          var label = document.createElement("label");
+          label.id = "endpoint-search-label";
+          label.htmlFor = "endpoint-name-search";
+          label.textContent = "Search Filmy endpoints";
+
+          var input = document.createElement("input");
+          input.id = "endpoint-name-search";
+          input.type = "search";
+          input.placeholder = "Search by endpoint, path, method, or summary...";
+          input.addEventListener("input", function (event) {
+            term = event.target.value || "";
             applySearchFilter();
           });
-          observer.observe(document.body, { childList: true, subtree: true });
-          window.addEventListener('load', function () {
-            ensureSearchBox();
-            applySearchFilter();
-          });
-        })();
-        </script>
-        {% endblock %}
-      </body>
-    </html>
+
+          inner.appendChild(label);
+          inner.appendChild(input);
+          wrap.appendChild(inner);
+          schemeContainer.parentNode.insertBefore(wrap, schemeContainer.nextSibling);
+
+          applySearchFilter();
+        }
+
+        var observer = new MutationObserver(function () {
+          ensureSearchBox();
+          applySearchFilter();
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        window.addEventListener("load", function () {
+          ensureSearchBox();
+          applySearchFilter();
+        });
+      })();
+    </script>
+    {% endblock %}
+  </body>
+</html>

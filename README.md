@@ -100,8 +100,10 @@ templates/
 ## API Documentation
 
 - **OpenAPI/Swagger UI:** [http://127.0.0.1:8000/api/docs/](http://127.0.0.1:8000/api/docs/)
-- **Redoc:** [http://127.0.0.1:8000/api/redoc/](http://127.0.0.1:8000/api/redoc/)
+- **ReDoc:** [http://127.0.0.1:8000/api/redoc/](http://127.0.0.1:8000/api/redoc/)
 - **Raw schema:** [http://127.0.0.1:8000/api/schema/](http://127.0.0.1:8000/api/schema/)
+- Swagger UI includes a custom live search bar for filtering endpoints by path, method, operation ID, and summary text.
+- JWT auth is preconfigured for the schema. Use `Bearer <your_access_token>` in the Swagger **Authorize** dialog.
 
 ## Frontend Stack
 
