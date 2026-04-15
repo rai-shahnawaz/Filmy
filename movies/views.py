@@ -36,6 +36,9 @@ def homepage(request):
     featured_movies = _collect_featured_content(Film, label="Movie")
     featured_series = _collect_featured_content(Series, label="Series", year_field="start_year")
     featured_people = _collect_people()
+    latest_movies = _collect_latest_content(Film, label="Now streaming", year_field="release_year")
+    latest_series = _collect_latest_content(Series, label="Binge next", year_field="start_year")
+    genres = _collect_genres()
 
     context = {
         "stats": {
@@ -48,20 +51,26 @@ def homepage(request):
         "featured_series": featured_series,
         "featured_people": featured_people,
         "hero_spotlight": featured_movies[:2] or featured_series[:2],
+        "latest_movies": latest_movies,
+        "latest_series": latest_series,
+        "genres": genres,
     }
     return render(request, "index.html", context)
 
 
 def _safe_node_count(node_class):
     try:
-        return node_class.nodes.filter(is_active=1).count()
+        manager = node_class.nodes
+        if hasattr(node_class, "is_active"):
+            return manager.filter(is_active=1).count()
+        return manager.all().count()
     except Exception:
         return 0
 
 
 def _collect_featured_content(node_class, label, year_field="release_year", limit=6):
     try:
-        items = list(node_class.nodes.filter(is_active=1))
+        items = list(_active_nodes(node_class))
     except Exception:
         return []
 
@@ -82,9 +91,30 @@ def _collect_featured_content(node_class, label, year_field="release_year", limi
     return payload
 
 
+def _collect_latest_content(node_class, label, year_field, limit=6):
+    try:
+        items = list(_active_nodes(node_class))
+    except Exception:
+        return []
+
+    ranked = sorted(items, key=lambda item: getattr(item, year_field, 0) or 0, reverse=True)
+    payload = []
+    for item in ranked[:limit]:
+        payload.append(
+            {
+                "uid": getattr(item, "uid", ""),
+                "title": getattr(item, "title", "Untitled"),
+                "description": getattr(item, "description", "") or "Freshly added catalog content waiting for editorial highlights.",
+                "year": getattr(item, year_field, None),
+                "eyebrow": label,
+            }
+        )
+    return payload
+
+
 def _collect_people(limit=6):
     try:
-        people = list(Person.nodes.filter(is_active=1))[:limit]
+        people = list(_active_nodes(Person))[:limit]
     except Exception:
         return []
 
@@ -99,6 +129,26 @@ def _collect_people(limit=6):
             }
         )
     return payload
+
+
+def _collect_genres(limit=8):
+    try:
+        genres = list(_active_nodes(Genre))
+    except Exception:
+        return []
+
+    ranked = sorted(
+        [getattr(genre, "name", "Genre") for genre in genres],
+        key=lambda name: name.lower(),
+    )
+    return ranked[:limit]
+
+
+def _active_nodes(node_class):
+    manager = node_class.nodes
+    if hasattr(node_class, "is_active"):
+        return manager.filter(is_active=1)
+    return manager.all()
 
 
 def discover_panel(request):
@@ -698,7 +748,7 @@ class AdminLoginView(APIView):
     permission_classes = []
 
     def get(self, request):
-        return Response({})
+        return Response({"stats": _build_admin_login_stats()})
 
     def post(self, request):
         username = request.data.get("username")
@@ -707,7 +757,13 @@ class AdminLoginView(APIView):
         if user is not None and user.is_staff:
             login(request, user)
             return redirect("admin_dashboard")
-        return Response({"error": "Invalid credentials or not an admin."}, status=401)
+        return Response(
+            {
+                "error": "Invalid credentials or not an admin.",
+                "stats": _build_admin_login_stats(),
+            },
+            status=401,
+        )
 
 
 @method_decorator(user_passes_test(lambda user: user.is_staff), name="dispatch")
@@ -717,13 +773,61 @@ class AdminDashboardView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        return Response(
-            {
-                "film_count": Film.nodes.count(),
-                "series_count": Series.nodes.count(),
-                "person_count": Person.nodes.count(),
-            }
-        )
+        return Response(_build_admin_dashboard_context(request))
+
+
+def _build_admin_login_stats():
+    return {
+        "film_count": _safe_node_count(Film),
+        "series_count": _safe_node_count(Series),
+        "person_count": _safe_node_count(Person),
+        "list_count": _safe_node_count(MovieList),
+    }
+
+
+def _build_admin_dashboard_context(request):
+    week_ago = timezone.now() - timedelta(days=7)
+    recent_logs = list(AuditLog.objects.select_related("user").order_by("-timestamp")[:8])
+    weekly_logs = AuditLog.objects.filter(timestamp__gte=week_ago)
+
+    recent_changes = [
+        {
+            "timestamp": log.timestamp,
+            "user": str(log.user) if log.user else "System",
+            "action": log.action.title(),
+            "object_type": log.object_type,
+            "details": log.details or log.object_repr,
+        }
+        for log in recent_logs
+    ]
+
+    return {
+        "film_count": _safe_node_count(Film),
+        "series_count": _safe_node_count(Series),
+        "person_count": _safe_node_count(Person),
+        "list_count": _safe_node_count(MovieList),
+        "featured_count": _safe_featured_count(),
+        "weekly_activity_count": weekly_logs.count(),
+        "recent_changes": recent_changes,
+        "admin_user": request.user,
+        "quick_links": [
+            {"label": "Swagger Docs", "href": "/api/docs/", "description": "Inspect and test every API endpoint."},
+            {"label": "Films API", "href": "/api/films/", "description": "Browse and manage movie records."},
+            {"label": "Series API", "href": "/api/series/", "description": "Review serialized series payloads."},
+            {"label": "People API", "href": "/api/people/", "description": "Manage cast and crew entities."},
+            {"label": "Lists API", "href": "/api/lists/", "description": "Inspect user-created collections."},
+        ],
+    }
+
+
+def _safe_featured_count():
+    count = 0
+    for node_class in (Film, Series, Person):
+        try:
+            count += node_class.nodes.filter(is_active=1, is_featured=1).count()
+        except Exception:
+            continue
+    return count
 
 
 class FilmList(generics.ListCreateAPIView):

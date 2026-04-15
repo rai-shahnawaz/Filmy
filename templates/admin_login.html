@@ -1,11 +1,58 @@
 {% extends 'base.html' %}
+{% block title %}Filmy Admin Login{% endblock %}
 {% block content %}
-<h2>Admin Login</h2>
-<form method="post">
-  {% csrf_token %}
-  <label>Username: <input type="text" name="username"></label><br>
-  <label>Password: <input type="password" name="password"></label><br>
-  <button type="submit">Login</button>
-  {% if error %}<p style="color:red">{{ error }}</p>{% endif %}
-</form>
+<section class="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-20">
+  <div class="grid gap-8 lg:grid-cols-[0.52fr_0.48fr]">
+    <div class="section-shell">
+      <p class="text-sm uppercase tracking-[0.3em] text-coral/80">Admin workspace</p>
+      <h1 class="mt-4 font-display text-5xl font-semibold text-white">Operate the catalog from the same stack.</h1>
+      <p class="mt-5 max-w-xl text-base leading-8 text-stone-300">
+        Staff members can sign in here to review API surfaces, monitor recent activity, and manage films, series, people, and lists without switching to a separate admin frontend.
+      </p>
+
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        <div class="metric-card">
+          <dt>Films</dt>
+          <dd>{{ stats.film_count }}</dd>
+        </div>
+        <div class="metric-card">
+          <dt>Series</dt>
+          <dd>{{ stats.series_count }}</dd>
+        </div>
+        <div class="metric-card">
+          <dt>People</dt>
+          <dd>{{ stats.person_count }}</dd>
+        </div>
+        <div class="metric-card">
+          <dt>Lists</dt>
+          <dd>{{ stats.list_count }}</dd>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-shell">
+      <p class="text-sm uppercase tracking-[0.3em] text-coral/80">Secure sign-in</p>
+      <h2 class="mt-4 font-display text-3xl font-semibold text-white">Staff access only</h2>
+      <form method="post" class="mt-8 space-y-5">
+        {% csrf_token %}
+        <div>
+          <label for="username" class="text-sm font-medium text-stone-200">Username</label>
+          <input id="username" name="username" type="text" class="mt-2 w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-stone-500 focus:border-coral focus:outline-none focus:ring-0" placeholder="admin username">
+        </div>
+        <div>
+          <label for="password" class="text-sm font-medium text-stone-200">Password</label>
+          <input id="password" name="password" type="password" class="mt-2 w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-stone-500 focus:border-coral focus:outline-none focus:ring-0" placeholder="password">
+        </div>
+        {% if error %}
+        <div class="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+          {{ error }}
+        </div>
+        {% endif %}
+        <button type="submit" class="inline-flex items-center justify-center rounded-full bg-coral px-6 py-3 text-sm font-semibold text-white transition hover:bg-orange-500">
+          Enter admin dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
 {% endblock %}
