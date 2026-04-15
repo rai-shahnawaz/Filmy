@@ -20,6 +20,7 @@ Filmy is a modular Django web application for managing movies, series, celebriti
 - JWT-based authentication
 - RESTful API endpoints for all modules
 - Interactive API docs (Swagger & Redoc)
+- Modern server-rendered frontend foundation with Django templates, Tailwind, HTMX, and Alpine
 - Static and media file handling
 
 ---
@@ -101,6 +102,13 @@ templates/
 - **OpenAPI/Swagger UI:** [http://127.0.0.1:8000/api/docs/](http://127.0.0.1:8000/api/docs/)
 - **Redoc:** [http://127.0.0.1:8000/api/redoc/](http://127.0.0.1:8000/api/redoc/)
 - **Raw schema:** [http://127.0.0.1:8000/api/schema/](http://127.0.0.1:8000/api/schema/)
+
+## Frontend Stack
+
+- Django templates for shared server-rendered pages
+- Tailwind CSS via CDN for modern layout and utility styling
+- HTMX for HTML-over-the-wire interactions
+- Alpine.js for lightweight client-side behavior
 
 ### Authentication
 - Obtain a JWT token via the `/api/auth/` endpoints.

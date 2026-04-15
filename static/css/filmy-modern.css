@@ -1,0 +1,137 @@
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.16), transparent 24rem),
+    radial-gradient(circle at top right, rgba(109, 40, 217, 0.18), transparent 28rem),
+    linear-gradient(180deg, #09090b 0%, #111827 50%, #050816 100%);
+}
+
+.page-shell {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4), transparent 90%);
+  pointer-events: none;
+}
+
+.page-aurora {
+  position: absolute;
+  top: -6rem;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.page-aurora-left {
+  left: -10rem;
+  background: rgba(249, 115, 22, 0.42);
+}
+
+.page-aurora-right {
+  right: -8rem;
+  background: rgba(168, 85, 247, 0.34);
+}
+
+.metric-card,
+.feature-card,
+.hero-panel,
+.section-shell,
+.discover-card {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(18px);
+}
+
+.metric-card {
+  border-radius: 1.75rem;
+  padding: 1.25rem;
+}
+
+.metric-card dt {
+  color: rgb(168 162 158);
+  font-size: 0.875rem;
+}
+
+.metric-card dd {
+  margin-top: 0.45rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.hero-panel,
+.section-shell {
+  border-radius: 2rem;
+  padding: 1.5rem;
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.24);
+}
+
+.feature-card,
+.discover-card {
+  border-radius: 1.75rem;
+  padding: 1.5rem;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.feature-card:hover,
+.discover-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(249, 115, 22, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.feature-kicker {
+  color: rgba(251, 146, 60, 0.85);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.feature-title {
+  margin-top: 0.9rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.feature-copy {
+  margin-top: 0.85rem;
+  line-height: 1.8;
+  color: rgb(214 211 209);
+}
+
+.filter-chip {
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.7rem 1.1rem;
+  color: rgb(231 229 228);
+  transition: all 180ms ease;
+}
+
+.filter-chip:hover,
+.filter-chip-active {
+  border-color: rgba(249, 115, 22, 0.45);
+  background: rgba(249, 115, 22, 0.16);
+  color: white;
+}

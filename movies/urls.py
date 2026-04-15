@@ -5,7 +5,7 @@ from movies.views import (
     export_films_json, import_films_json, export_films_csv, import_films_csv,
     export_series_json, import_series_json, export_series_csv, import_series_csv,
     search_movies, search_series, search_lists, add_favorite, remove_favorite,
-    add_watchlist, remove_watchlist, user_dashboard, homepage, toggle_featured_status,
+    add_watchlist, remove_watchlist, user_dashboard, homepage, discover_panel, toggle_featured_status,
     add_admin_note, list_admin_notes, admin_dashboard_analytics,
     assign_person_to_object, remove_person_from_object,
     soft_delete_film, restore_film, soft_delete_series, restore_series,
@@ -17,6 +17,7 @@ from reviews.views import add_rating, add_review, get_ratings_reviews
 urlpatterns = [
     path('', homepage, name='homepage'),
     path('user/dashboard/', user_dashboard, name='user_dashboard'),
+    path('user/discover/', discover_panel, name='discover_panel'),
     # User-facing browse/search/filter
     path('user/search_movies/', search_movies, name='search_movies'),
     path('user/search_series/', search_series, name='search_series'),

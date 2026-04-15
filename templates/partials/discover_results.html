@@ -1,0 +1,22 @@
+<div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    {% for card in cards %}
+    <article class="discover-card">
+        <div class="flex items-center justify-between gap-3">
+            <p class="text-xs uppercase tracking-[0.2em] text-coral/80">{{ card.eyebrow }}</p>
+            {% if card.year %}
+            <p class="text-sm text-stone-400">{{ card.year }}</p>
+            {% endif %}
+        </div>
+        <h3 class="mt-4 font-display text-2xl font-semibold text-white">{{ card.title }}</h3>
+        <p class="mt-3 text-sm leading-7 text-stone-300">{{ card.description|truncatechars:160 }}</p>
+        <div class="mt-6 flex items-center justify-between text-sm text-stone-400">
+            <span>Rendered by Django</span>
+            <span>HTMX fragment</span>
+        </div>
+    </article>
+    {% empty %}
+    <div class="md:col-span-2 xl:col-span-3 rounded-[2rem] border border-dashed border-white/10 bg-white/5 p-8 text-center text-stone-300">
+        No results{% if query %} for "{{ query }}"{% endif %}. Try a broader search or add more content to the database.
+    </div>
+    {% endfor %}
+</div>

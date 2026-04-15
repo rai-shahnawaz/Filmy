@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Filmy{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Filmy helps people discover movies, series, talent, and curated lists in one modern Django app.{% endblock %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: "#0f172a",
+                        plum: "#6d28d9",
+                        coral: "#f97316",
+                        mist: "#eef2ff",
+                        sand: "#fff7ed"
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                        body: ["Instrument Sans", "sans-serif"]
+                    },
+                    boxShadow: {
+                        glow: "0 30px 80px rgba(15, 23, 42, 0.18)"
+                    }
+                }
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.4/dist/htmx.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/filmy-modern.css' %}">
+    {% block head %}{% endblock %}
+</head>
+<body class="min-h-full bg-stone-950 font-body text-stone-100 antialiased">
+    <div class="page-shell">
+        <div class="page-grid"></div>
+        <div class="page-aurora page-aurora-left"></div>
+        <div class="page-aurora page-aurora-right"></div>
+        <header class="relative z-10">
+            <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
+                <a href="/" class="flex items-center gap-3">
+                    <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-lg font-semibold text-white shadow-glow backdrop-blur">F</span>
+                    <div>
+                        <div class="font-display text-xl font-bold tracking-tight">Filmy</div>
+                        <div class="text-sm text-stone-300">Django, HTMX, Tailwind</div>
+                    </div>
+                </a>
+                <nav class="hidden items-center gap-6 text-sm text-stone-300 md:flex">
+                    <a href="#discover" class="transition hover:text-white">Discover</a>
+                    <a href="/api/docs/" class="transition hover:text-white">API Docs</a>
+                    <a href="/api/admin/login/" class="transition hover:text-white">Admin</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="relative z-10">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

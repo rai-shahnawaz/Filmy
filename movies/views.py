@@ -33,7 +33,110 @@ from .serializers import (
 
 
 def homepage(request):
-    return render(request, "index.html")
+    featured_movies = _collect_featured_content(Film, label="Movie")
+    featured_series = _collect_featured_content(Series, label="Series", year_field="start_year")
+    featured_people = _collect_people()
+
+    context = {
+        "stats": {
+            "movies": _safe_node_count(Film),
+            "series": _safe_node_count(Series),
+            "people": _safe_node_count(Person),
+            "lists": _safe_node_count(MovieList),
+        },
+        "featured_movies": featured_movies,
+        "featured_series": featured_series,
+        "featured_people": featured_people,
+        "hero_spotlight": featured_movies[:2] or featured_series[:2],
+    }
+    return render(request, "index.html", context)
+
+
+def _safe_node_count(node_class):
+    try:
+        return node_class.nodes.filter(is_active=1).count()
+    except Exception:
+        return 0
+
+
+def _collect_featured_content(node_class, label, year_field="release_year", limit=6):
+    try:
+        items = list(node_class.nodes.filter(is_active=1))
+    except Exception:
+        return []
+
+    featured = [item for item in items if getattr(item, "is_featured", 0)]
+    selected = featured[:limit] or items[:limit]
+    payload = []
+    for item in selected:
+        year = getattr(item, year_field, None)
+        payload.append(
+            {
+                "uid": getattr(item, "uid", ""),
+                "title": getattr(item, "title", "Untitled"),
+                "description": getattr(item, "description", "") or "A fresh addition waiting for artwork, trailers, and editorial highlights.",
+                "year": year,
+                "eyebrow": label,
+            }
+        )
+    return payload
+
+
+def _collect_people(limit=6):
+    try:
+        people = list(Person.nodes.filter(is_active=1))[:limit]
+    except Exception:
+        return []
+
+    payload = []
+    for person in people:
+        payload.append(
+            {
+                "uid": getattr(person, "uid", ""),
+                "title": getattr(person, "name", "Unknown talent"),
+                "description": getattr(person, "bio", "") or "Profile details and credits can be surfaced here as the experience expands.",
+                "eyebrow": "People",
+            }
+        )
+    return payload
+
+
+def discover_panel(request):
+    section = request.GET.get("section", "movies")
+    query = request.GET.get("q", "").strip().lower()
+
+    config = {
+        "movies": (Film, "title", "release_year", "Movie"),
+        "series": (Series, "title", "start_year", "Series"),
+        "people": (Person, "name", None, "Person"),
+    }
+    model, title_attr, year_attr, label = config.get(section, config["movies"])
+
+    try:
+        items = list(model.nodes.filter(is_active=1))
+    except Exception:
+        items = []
+
+    if query:
+        items = [item for item in items if query in getattr(item, title_attr, "").lower()]
+
+    cards = []
+    for item in items[:9]:
+        cards.append(
+            {
+                "title": getattr(item, title_attr, "Untitled"),
+                "description": getattr(item, "description", "") or getattr(item, "bio", "") or "Content details will appear here.",
+                "eyebrow": label,
+                "year": getattr(item, year_attr, None) if year_attr else None,
+            }
+        )
+
+    context = {
+        "cards": cards,
+        "section": section,
+        "query": request.GET.get("q", "").strip(),
+    }
+    return render(request, "partials/discover_results.html", context)
 
 
 def _content_model(object_type):
