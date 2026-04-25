@@ -1,3 +1,11 @@
+from core.neo4j_cypher_utils import run_read_cypher
+# Example: Direct Cypher query using the utility
+def get_films_with_min_year(min_year):
+    query = """
+    MATCH (f:Film) WHERE f.release_year >= $min_year RETURN f.title, f.release_year
+    """
+    results, _ = run_read_cypher(query, {'min_year': min_year})
+    return results
 from neomodel import DateProperty, DateTimeProperty, FloatProperty, IntegerProperty, RelationshipFrom, RelationshipTo, StringProperty, StructuredNode, UniqueIdProperty
 from people.models import Person
 

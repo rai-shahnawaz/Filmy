@@ -62,6 +62,63 @@ templates/
 
 ---
 
+
+## Neo4j with Docker (Dev & Prod)
+
+This project uses Docker to run Neo4j for both development and production. All configuration is managed via environment variables.
+
+### Quick Start (Development)
+
+1. Copy `.env.example` to `.env` and edit as needed:
+    ```bash
+    cp .env.example .env
+    # Edit NEO4J_PASSWORD, ports, etc. for your environment
+    ```
+2. Start Neo4j with Docker Compose:
+    ```bash
+    docker-compose up -d
+    ```
+3. Access Neo4j Browser at [http://localhost:7474](http://localhost:7474) (default password: see `.env`)
+
+### Production Notes
+- Use strong, unique passwords for `NEO4J_PASSWORD` in production.
+- Consider using Docker secrets or your CI/CD system to inject secrets securely.
+- Data is persisted in Docker volumes (`neo4j_data`, etc.).
+- Adjust memory and other configs in `docker-compose.yml` as needed.
+
+### Stopping Neo4j
+```bash
+docker-compose down
+```
+
+---
+
+## Hybrid Django/Neomodel/Cypher Usage
+
+
+This project supports both Neomodel ORM and direct Cypher queries via a utility module (`core/neo4j_cypher_utils.py`).
+
+### Usage Patterns
+
+**Neomodel ORM (Recommended for most use cases):**
+```python
+from movies.neomodels import Film
+film = Film.nodes.get(title="Inception")
+print(film.release_year)
+```
+
+**Direct Cypher Queries (Advanced/Custom):**
+```python
+from core.neo4j_cypher_utils import run_read_cypher
+query = "MATCH (f:Film) WHERE f.release_year >= $min_year RETURN f.title, f.release_year"
+results, _ = run_read_cypher(query, {'min_year': 2000})
+for title, year in results:
+    print(title, year)
+```
+
+See `movies/neomodels.py` and `lists/neomodels.py` for more examples. Tests in `movies/tests.py` and `lists/tests.py` also demonstrate usage.
+
+---
 ## Getting Started
 
 ### Prerequisites

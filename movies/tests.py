@@ -1,3 +1,14 @@
+from core.neo4j_cypher_utils import run_read_cypher
+from movies.neomodels import get_films_with_min_year
+
+class CypherUtilityTests(SimpleTestCase):
+    def test_get_films_with_min_year(self):
+        # This test assumes at least one film exists with release_year >= 2000
+        try:
+            results = get_films_with_min_year(2000)
+            self.assertIsInstance(results, list)
+        except Exception as e:
+            self.fail(f"Cypher utility failed: {e}")
 from django.test import SimpleTestCase
 from django.urls import resolve, reverse
 
