@@ -5,7 +5,7 @@ Utility module to encapsulate Cypher query execution for hybrid Neomodel/Cypher 
 """
 import logging
 from neomodel import db
-from neomodel.exceptions import CypherException
+# from neomodel.exceptions import CypherException
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +26,7 @@ def run_cypher(query, params=None, read_only=True):
         results, meta = db.cypher_query(query, params or {}, resolve_objects=False)
         logger.debug(f"Cypher executed: {query} | params: {params} | meta: {meta}")
         return results, meta
-    except CypherException as e:
+    except Exception as e:
         logger.error(f"Cypher query failed: {query} | params: {params} | error: {e}")
         raise
 
