@@ -126,11 +126,11 @@ NEO4J_HOST = os.environ.get('NEO4J_HOST', 'localhost')
 NEO4J_PORT = os.environ.get('NEO4J_BOLT_PORT', '7687')
 NEO4J_USER = os.environ.get('NEO4J_USER', 'neo4j')
 NEO4J_PASSWORD = os.environ.get('NEO4J_PASSWORD', 'devpassword')
-NEOMODEL_NEO4J_BOLT_URL = os.environ.get(
-    'NEOMODEL_NEO4J_BOLT_URL',
-    f'bolt://{NEO4J_USER}:{NEO4J_PASSWORD}@{NEO4J_HOST}:{NEO4J_PORT}'
-)
-NEOMODEL_ENCRYPTED_CONNECTION = os.environ.get('NEOMODEL_ENCRYPTED_CONNECTION', 'False') == 'True'
+# NEOMODEL_NEO4J_BOLT_URL = os.environ.get(
+#     'NEOMODEL_NEO4J_BOLT_URL',
+#     f'bolt://{NEO4J_USER}:{NEO4J_PASSWORD}@{NEO4J_HOST}:{NEO4J_PORT}'
+# )
+# NEOMODEL_ENCRYPTED_CONNECTION = os.environ.get('NEOMODEL_ENCRYPTED_CONNECTION', 'False') == 'True'
 NEOMODEL_SIGNALS = True
 
 
