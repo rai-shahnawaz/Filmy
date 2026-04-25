@@ -63,40 +63,101 @@ templates/
 ---
 
 
-## Neo4j with Docker (Dev & Prod)
 
-This project uses Docker to run Neo4j for both development and production. All configuration is managed via environment variables.
+## Neo4j Hybrid Setup: Docker (Dev) & Aura (Prod)
 
-### Quick Start (Development)
+This project uses a hybrid approach for Neo4j:
+- **Dockerized Neo4j** for local/dev (on your machine or a VPS)
+- **Neo4j Aura** (managed cloud) for production
 
-1. Copy `.env.example` to `.env` and edit as needed:
-    ```bash
-    cp .env.example .env
-    # Edit NEO4J_PASSWORD, ports, etc. for your environment
-    ```
+All configuration is managed via environment variables for easy switching.
+
+### Quick Start: Local/Dev (Docker)
+
+1. Edit `.env` as needed (see comments in file):
+    - Set `NEO4J_PASSWORD`, `NEO4J_HTTP_PORT`, `NEO4J_BOLT_PORT`, etc.
 2. Start Neo4j with Docker Compose:
     ```bash
     docker-compose up -d
     ```
 3. Access Neo4j Browser at [http://localhost:7474](http://localhost:7474) (default password: see `.env`)
 
-### Production Notes
-- Use strong, unique passwords for `NEO4J_PASSWORD` in production.
-- Consider using Docker secrets or your CI/CD system to inject secrets securely.
-- Data is persisted in Docker volumes (`neo4j_data`, etc.).
-- Adjust memory and other configs in `docker-compose.yml` as needed.
+#### Running Neo4j on a VPS (Optional)
+- You can run the same Docker Compose setup on a VPS (e.g., Oracle Cloud) for remote dev.
+- Update `.env` and firewall rules as needed.
 
-### Stopping Neo4j
+### Production: Neo4j Aura
+
+1. Create a Neo4j Aura instance (https://console.neo4j.io/)
+2. In your Render (or other host) dashboard, set these environment variables:
+    - `NEOMODEL_NEO4J_BOLT_URL=bolt+s://<username>:<password>@<host>:<port>`
+    - `NEOMODEL_ENCRYPTED_CONNECTION=True`
+3. Do NOT use Docker Compose for Neo4j in production.
+
+### Switching Environments
+- Local/dev: Uses Docker Compose and `.env` for config
+- Production: Uses Aura connection string and encrypted connection via env vars
+
+### Stopping Neo4j (Dev)
 ```bash
 docker-compose down
 ```
 
 ---
 
+
 ## Hybrid Django/Neomodel/Cypher Usage
 
+This project supports both:
+- **Neomodel ORM** for most graph modeling
+- **Raw Cypher queries** via a utility module (`core/neo4j_cypher_utils.py`)
 
-This project supports both Neomodel ORM and direct Cypher queries via a utility module (`core/neo4j_cypher_utils.py`).
+See `movies/neomodels.py` and `lists/neomodels.py` for examples. Tests in `movies/tests.py` and `lists/tests.py` demonstrate both patterns.
+
+### How to Use
+
+**Neomodel ORM (Recommended):**
+```python
+from movies.neomodels import Film
+film = Film.nodes.get(title="Inception")
+print(film.release_year)
+```
+
+**Raw Cypher Utility:**
+```python
+from core.neo4j_cypher_utils import run_cypher
+query = "MATCH (f:Film) WHERE f.release_year >= $min_year RETURN f.title, f.release_year"
+results, _ = run_cypher(query, {'min_year': 2000})
+for title, year in results:
+    print(title, year)
+```
+
+---
+
+## Environment Variable Reference
+
+- `.env` (local/dev):
+    - `NEO4J_PASSWORD`, `NEO4J_HTTP_PORT`, `NEO4J_BOLT_PORT`, `NEO4J_USER`
+- Render/prod:
+    - `NEOMODEL_NEO4J_BOLT_URL`, `NEOMODEL_ENCRYPTED_CONNECTION`
+
+---
+
+## Verification Checklist
+
+1. Start Neo4j via Docker (local or VPS), confirm browser and Bolt access
+2. Start Django, confirm ORM and Cypher utility work
+3. Deploy to Render with Aura config, confirm production works
+4. Run all tests
+5. Review documentation for clarity
+
+---
+
+## Further Considerations
+
+1. For production, always use a managed Neo4j (Aura or your own server), not Docker Compose on Render
+2. For dev, you can use Docker locally or on a VPS
+3. Document any future AI/GraphRAG or Rust/Vector features separately
 
 ### Usage Patterns
 
